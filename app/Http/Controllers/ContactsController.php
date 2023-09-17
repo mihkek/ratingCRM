@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\TestDataGenerators\ProgressTestData;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -16,20 +17,8 @@ class ContactsController extends Controller
     {
         return Inertia::render('Contacts/Index', [
             'filters' => Request::all('search', 'trashed'),
-            'contacts' => Auth::user()->account->contacts()
-                ->with('organization')
-                ->orderByName()
-                ->filter(Request::only('search', 'trashed'))
-                ->paginate(10)
-                ->withQueryString()
-                ->through(fn ($contact) => [
-                    'id' => $contact->id,
-                    'name' => $contact->name,
-                    'phone' => $contact->phone,
-                    'city' => $contact->city,
-                    'created_at' => Carbon::now()->format('d/m/Y'),
-                    'organization' => $contact->organization ? $contact->organization->only('name') : null,
-                ]),
+            'contacts' => ProgressTestData::$DATA,
+            'links' => []
         ]);
     }
 
@@ -45,26 +34,34 @@ class ContactsController extends Controller
         ]);
     }
 
+    public function viewone()
+    {
+        return Inertia::render('Contacts/ViewOne', [
+            'filters' => Request::all('search', 'trashed'),
+            'contacts' => ProgressTestData::generatePersonalArray(),
+            'links' => []
+        ]);
+    }
     public function store()
     {
-        Auth::user()->account->contacts()->create(
-            Request::validate([
-                'first_name' => ['required', 'max:50'],
-                'last_name' => ['required', 'max:50'],
-                'organization_id' => ['nullable', Rule::exists('organizations', 'id')->where(function ($query) {
-                    $query->where('account_id', Auth::user()->account_id);
-                })],
-                'email' => ['nullable', 'max:50', 'email'],
-                'phone' => ['nullable', 'max:50'],
-                'address' => ['nullable', 'max:150'],
-                'city' => ['nullable', 'max:50'],
-                'region' => ['nullable', 'max:50'],
-                'country' => ['nullable', 'max:2'],
-                'postal_code' => ['nullable', 'max:25'],
-            ])
-        );
+        // Auth::user()->account->contacts()->create(
+        //     Request::validate([
+        //         'first_name' => ['required', 'max:50'],
+        //         'last_name' => ['required', 'max:50'],
+        //         'organization_id' => ['nullable', Rule::exists('organizations', 'id')->where(function ($query) {
+        //             $query->where('account_id', Auth::user()->account_id);
+        //         })],
+        //         'email' => ['nullable', 'max:50', 'email'],
+        //         'phone' => ['nullable', 'max:50'],
+        //         'address' => ['nullable', 'max:150'],
+        //         'city' => ['nullable', 'max:50'],
+        //         'region' => ['nullable', 'max:50'],
+        //         'country' => ['nullable', 'max:2'],
+        //         'postal_code' => ['nullable', 'max:25'],
+        //     ])
+        // );
 
-        return Redirect::route('contacts')->with('success', 'Contact created.');
+        return Redirect::route('contacts')->with('success', 'Данные успешно сохранены.');
     }
 
     public function edit(Contact $contact)

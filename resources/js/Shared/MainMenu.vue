@@ -49,41 +49,41 @@
     </div>
 
     <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/">
+      <Link class="group flex items-center py-3" href="/statistics">
         <icon name="star" class="mr-2 w-4 h-4"
-              :class="isUrl('') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('') ? 'text-white' : 'text-black group-hover:text-white'">РЕЙТИНГИ</div>
+              :class="isUrl('statistics') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
+        <div :class="isUrl('statistics') ? 'text-white' : 'text-black group-hover:text-white'">РЕЙТИНГИ</div>
       </Link>
     </div>
 
     <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/">
+      <Link class="group flex items-center py-3" href="/admin">
         <icon name="razdel" class="mr-2 w-4 h-4"
-              :class="isUrl('') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('') ? 'text-white' : 'text-black group-hover:text-white'">Раздел админа</div>
+              :class="isUrl('admin') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
+        <div :class="isUrl('admin') ? 'text-white' : 'text-black group-hover:text-white'">Раздел админа</div>
          <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
       </Link>
     </div>
 
     <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/">
+      <Link class="group flex items-center py-3" href="/trainer">
         <icon name="razdel" class="mr-2 w-4 h-4"
-              :class="isUrl('') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('') ? 'text-white' : 'text-black group-hover:text-white'">Раздел наставника</div>
+              :class="isUrl('trainer') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
+        <div :class="isUrl('trainer') ? 'text-white' : 'text-black group-hover:text-white'">Раздел наставника</div>
          <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
       </Link>
 
     </div>
 
     <div class="mb-4">
-      <Link class="group flex items-center py-3" href="https://moyashi.ru/"> 
+      <Link class="group flex items-center py-3" href="https://moyashi.ru/">
         <icon name="site" class="mr-2 w-4 h-4"
               :class="isUrl('') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
         <div :class="isUrl('') ? 'text-white' : 'text-black group-hover:text-white'">На сайт</div>
       </Link>
 
     </div>
-    
+
   </div>
 </template>
 

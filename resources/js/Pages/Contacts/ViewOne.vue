@@ -16,6 +16,12 @@
         <span class="hidden md:inline">&nbsp;Достижение</span>
       </Link>
     </div>
+    <div class="block max-w-full mb-5 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Батраков Михаил Сакитович</h5>
+        <p class="text-2xl font-normal text-gray-700 dark:text-gray-400"><strong>Пояс</strong> - Оранжевый (10 кю) .</p>
+        <p class="text-2xl font-normal text-gray-700 dark:text-gray-400"><strong>Разряд</strong> - Без разряда .</p>
+        <p class="text-2xl font-normal text-gray-700 dark:text-gray-400"><strong>Наставник</strong> - Иванов Иван Иваныч .</p>
+    </div>
     <div class="bg-white rounded-md shadow overflow-x-auto">
       <table class="w-full whitespace-nowrap">
         <tr class="text-left font-bold">

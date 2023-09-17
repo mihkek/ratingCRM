@@ -120,6 +120,10 @@ Route::get('contacts/{contact}/edit', [ContactsController::class, 'edit'])
     ->name('contacts.edit')
     ->middleware('auth');
 
+Route::get('contacts/{contact}/view', [ContactsController::class, 'viewone'])
+    ->name('contacts.viewone')
+    ->middleware('auth');
+
 Route::put('contacts/{contact}', [ContactsController::class, 'update'])
     ->name('contacts.update')
     ->middleware('auth');
