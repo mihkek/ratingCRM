@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
+use Carbon\Carbon;
 
 class ContactsController extends Controller
 {
@@ -26,7 +27,7 @@ class ContactsController extends Controller
                     'name' => $contact->name,
                     'phone' => $contact->phone,
                     'city' => $contact->city,
-                    'deleted_at' => $contact->deleted_at,
+                    'created_at' => Carbon::now()->format('d/m/Y'),
                     'organization' => $contact->organization ? $contact->organization->only('name') : null,
                 ]),
         ]);

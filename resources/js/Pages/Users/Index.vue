@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Head title="Users" />
-    <h1 class="mb-8 text-3xl font-bold">Users</h1>
+    <Head title="Ученики" />
+    <h1 class="mb-8 text-3xl font-bold">Ученики</h1>
     <div class="flex items-center justify-between mb-6">
       <search-filter v-model="form.search" class="mr-4 w-full max-w-md" @reset="reset">
         <label class="block text-gray-700">Role:</label>
@@ -18,16 +18,16 @@
         </select>
       </search-filter>
       <Link class="btn-indigo" href="/users/create">
-        <span>Create</span>
-        <span class="hidden md:inline">&nbsp;User</span>
+        <span>Создать</span>
+        <span class="hidden md:inline">&nbsp;Ученика</span>
       </Link>
     </div>
     <div class="bg-white rounded-md shadow overflow-x-auto">
       <table class="w-full whitespace-nowrap">
         <tr class="text-left font-bold">
-          <th class="pb-4 pt-6 px-6">Name</th>
+          <th class="pb-4 pt-6 px-6">Имя</th>
           <th class="pb-4 pt-6 px-6">Email</th>
-          <th class="pb-4 pt-6 px-6" colspan="2">Role</th>
+          <th class="pb-4 pt-6 px-6" colspan="2">Роль</th>
         </tr>
         <tr v-for="user in users" :key="user.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
@@ -59,6 +59,7 @@
       </table>
     </div>
   </div>
+
 </template>
 
 <script>

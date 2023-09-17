@@ -7,6 +7,9 @@ use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\OrganizationsController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\BeltlistController;
+use App\Http\Controllers\CategorylistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -135,8 +138,58 @@ Route::get('reports', [ReportsController::class, 'index'])
     ->name('reports')
     ->middleware('auth');
 
+Route::get('reports/create', [ReportsController::class, 'create'])
+    ->name('reports.create')
+    ->middleware('auth');
+
+Route::get('reports/{report}/edit', [ReportsController::class, 'edit'])
+    ->name('reports.edit')
+    ->middleware('auth');
+
 // Images
 
 Route::get('/img/{path}', [ImagesController::class, 'show'])
     ->where('path', '.*')
     ->name('image');
+
+// Progress
+
+Route::get('progress', [ProgressController::class, 'index'])
+    ->name('progress')
+    ->middleware('auth');
+
+Route::get('progress/create', [ProgressController::class, 'create'])
+    ->name('progress.create')
+    ->middleware('auth');
+
+Route::get('progress/{progres}/edit', [ProgressController::class, 'edit'])
+    ->name('progress.edit')
+    ->middleware('auth');
+
+// Beltlist
+
+Route::get('beltlist', [BeltlistController::class, 'index'])
+    ->name('beltlist')
+    ->middleware('auth');
+
+Route::get('beltlist/create', [BeltlistController::class, 'create'])
+    ->name('beltlist.create')
+    ->middleware('auth');
+
+Route::get('beltlist/{belt}/edit', [BeltlistController::class, 'edit'])
+    ->name('beltlist.edit')
+    ->middleware('auth');
+
+// Categorylist
+
+Route::get('categorylist', [CategorylistController::class, 'index'])
+    ->name('categorylist')
+    ->middleware('auth');
+
+Route::get('categorylist/create', [CategorylistController::class, 'create'])
+    ->name('categorylist.create')
+    ->middleware('auth');
+
+Route::get('categorylist/{category}/edit', [CategorylistController::class, 'edit'])
+    ->name('categorylist.edit')
+    ->middleware('auth');
