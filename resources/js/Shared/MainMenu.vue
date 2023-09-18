@@ -4,8 +4,8 @@
     <div class="mb-4">
       <Link class="group flex items-center py-3" href="/users">
         <icon name="students" class="mr-2 w-4 h-4"
-              :class="isUrl('users') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('users') ? 'text-white' : 'text-black group-hover:text-white'">Ученики</div>
+              :class="isUrl('students') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
+        <div :class="isUrl('students') ? 'text-white' : 'text-black group-hover:text-white'">Ученики</div>
       </Link>
     </div>
    <div class="mb-4">
@@ -19,8 +19,8 @@
     <div class="mb-4">
       <Link class="group flex items-center py-3" href="/reports">
         <icon name="ticher" class="mr-2 w-4 h-4"
-              :class="isUrl('reports') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('reports') ? 'text-white' : 'text-black group-hover:text-white'">Наставники</div>
+              :class="isUrl('mentors') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
+        <div :class="isUrl('mentors') ? 'text-white' : 'text-black group-hover:text-white'">Наставники</div>
       </Link>
     </div>
 
@@ -43,8 +43,8 @@
     <div class="mb-4">
       <Link class="group flex items-center py-3" href="/categorylist">
         <icon name="san" class="mr-2 w-4 h-4"
-              :class="isUrl('categorylist') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('categorylist') ? 'text-white' : 'text-black group-hover:text-white'">Разряды</div>
+              :class="isUrl('ranks') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
+        <div :class="isUrl('ranks') ? 'text-white' : 'text-black group-hover:text-white'">Разряды</div>
       </Link>
     </div>
 
