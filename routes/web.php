@@ -10,6 +10,8 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\BeltlistController;
 use App\Http\Controllers\CategorylistController;
+use App\Http\Controllers\JournalController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -196,4 +198,32 @@ Route::get('categorylist/create', [CategorylistController::class, 'create'])
 
 Route::get('categorylist/{category}/edit', [CategorylistController::class, 'edit'])
     ->name('categorylist.edit')
+    ->middleware('auth');
+
+// Admin
+
+Route::get('admin', [AdminController::class, 'index'])
+    ->name('admin')
+    ->middleware('auth');
+
+Route::get('admin/create', [AdminController::class, 'create'])
+    ->name('admin.create')
+    ->middleware('auth');
+
+Route::get('admin/{category}/edit', [AdminController::class, 'edit'])
+    ->name('admin.edit')
+    ->middleware('auth');
+
+// Journal
+
+Route::get('journal', [JournalController::class, 'index'])
+    ->name('admin')
+    ->middleware('auth');
+
+Route::get('journal/create', [JournalController::class, 'create'])
+    ->name('admin.create')
+    ->middleware('auth');
+
+Route::get('journal/{category}/edit', [JournalController::class, 'edit'])
+    ->name('admin.edit')
     ->middleware('auth');

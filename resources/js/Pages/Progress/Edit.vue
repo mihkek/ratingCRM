@@ -16,7 +16,7 @@
 
                 <div class="flex items-center px-8 py-4 bg-gray-50 border-t border-gray-100">
   
-          <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Update Contact</loading-button>
+          <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Сохранить</loading-button>
         </div>
 
       </form>
