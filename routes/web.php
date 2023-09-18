@@ -4,7 +4,9 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\MentorController;
 use App\Http\Controllers\OrganizationsController;
+use App\Http\Controllers\RankController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProgressController;
@@ -17,17 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Auth
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
-
-// Auth
-
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
     ->name('login')
     ->middleware('guest');
@@ -39,11 +33,135 @@ Route::post('login', [AuthenticatedSessionController::class, 'store'])
 Route::delete('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
-// Dashboard
-
+/*
+|--------------------------------------------------------------------------
+| Dashboard
+|--------------------------------------------------------------------------
+*/
 Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard')
     ->middleware('auth');
+
+
+// Ученики
+// Журнал достижений
+
+
+/*
+|--------------------------------------------------------------------------
+| Наставники
+|--------------------------------------------------------------------------
+*/
+Route::get('mentors', [MentorController::class, 'index'])
+    ->name('mentors')
+    ->middleware('auth');
+
+Route::get('mentors/create', [MentorController::class, 'create'])
+    ->name('mentors.create')
+    ->middleware('auth');
+
+Route::get('mentors/{mentor}/edit', [MentorController::class, 'edit'])
+    ->name('mentors.edit')
+    ->middleware('auth');
+
+/*
+|--------------------------------------------------------------------------
+| Достижения
+|--------------------------------------------------------------------------
+*/
+Route::get('progress', [ProgressController::class, 'index'])
+    ->name('progress')
+    ->middleware('auth');
+
+Route::get('progress/create', [ProgressController::class, 'create'])
+    ->name('progress.create')
+    ->middleware('auth');
+
+Route::get('progress/{progres}/edit', [ProgressController::class, 'edit'])
+    ->name('progress.edit')
+    ->middleware('auth');
+
+/*
+|--------------------------------------------------------------------------
+| Пояса
+|--------------------------------------------------------------------------
+*/
+Route::get('beltlist', [BeltlistController::class, 'index'])
+    ->name('beltlist')
+    ->middleware('auth');
+
+Route::get('beltlist/create', [BeltlistController::class, 'create'])
+    ->name('beltlist.create')
+    ->middleware('auth');
+
+Route::get('beltlist/{belt}/edit', [BeltlistController::class, 'edit'])
+    ->name('beltlist.edit')
+    ->middleware('auth');
+
+/*
+|--------------------------------------------------------------------------
+| Разряды
+|--------------------------------------------------------------------------
+*/
+Route::get('ranks', [RankController::class, 'index'])
+    ->name('ranks')
+    ->middleware('auth');
+
+Route::get('ranks/create', [RankController::class, 'create'])
+    ->name('ranks.create')
+    ->middleware('auth');
+
+Route::get('ranks/{rank}/edit', [RankController::class, 'edit'])
+    ->name('ranks.edit')
+    ->middleware('auth');
+
+/*
+|--------------------------------------------------------------------------
+| Рейтинги
+|--------------------------------------------------------------------------
+*/
+Route::get('ratings', [RatingsController::class, 'index'])
+    ->name('ratings')
+    ->middleware('auth');
+
+/*
+|--------------------------------------------------------------------------
+| Раздел админа
+|--------------------------------------------------------------------------
+*/
+Route::get('admin', [AdminController::class, 'index'])
+    ->name('admin')
+    ->middleware('auth');
+
+Route::get('admin/create', [AdminController::class, 'create'])
+    ->name('admin.create')
+    ->middleware('auth');
+
+Route::get('admin/{category}/edit', [AdminController::class, 'edit'])
+    ->name('admin.edit')
+    ->middleware('auth');
+
+/*
+|--------------------------------------------------------------------------
+| Раздел наставника
+|--------------------------------------------------------------------------
+*/
+Route::get('journal', [JournalController::class, 'index'])
+    ->name('admin')
+    ->middleware('auth');
+
+Route::get('journal/create', [JournalController::class, 'create'])
+    ->name('admin.create')
+    ->middleware('auth');
+
+Route::get('journal/{category}/edit', [JournalController::class, 'edit'])
+    ->name('admin.edit')
+    ->middleware('auth');
+
+
+
+
+
 
 // Users
 
@@ -106,12 +224,6 @@ Route::put('organizations/{organization}/restore', [OrganizationsController::cla
     ->middleware('auth');
 
 
-// Ratings
-
-Route::get('ratings', [RatingsController::class, 'index'])
-    ->name('ratings')
-    ->middleware('auth');
-
 // Contacts
 
 
@@ -147,19 +259,6 @@ Route::put('contacts/{contact}/restore', [ContactsController::class, 'restore'])
     ->name('contacts.restore')
     ->middleware('auth');
 
-// Reports
-
-Route::get('reports', [ReportsController::class, 'index'])
-    ->name('reports')
-    ->middleware('auth');
-
-Route::get('reports/create', [ReportsController::class, 'create'])
-    ->name('reports.create')
-    ->middleware('auth');
-
-Route::get('reports/{report}/edit', [ReportsController::class, 'edit'])
-    ->name('reports.edit')
-    ->middleware('auth');
 
 // Images
 
@@ -167,72 +266,3 @@ Route::get('/img/{path}', [ImagesController::class, 'show'])
     ->where('path', '.*')
     ->name('image');
 
-// Progress
-
-Route::get('progress', [ProgressController::class, 'index'])
-    ->name('progress')
-    ->middleware('auth');
-
-Route::get('progress/create', [ProgressController::class, 'create'])
-    ->name('progress.create')
-    ->middleware('auth');
-
-Route::get('progress/{progres}/edit', [ProgressController::class, 'edit'])
-    ->name('progress.edit')
-    ->middleware('auth');
-
-// Beltlist
-
-Route::get('beltlist', [BeltlistController::class, 'index'])
-    ->name('beltlist')
-    ->middleware('auth');
-
-Route::get('beltlist/create', [BeltlistController::class, 'create'])
-    ->name('beltlist.create')
-    ->middleware('auth');
-
-Route::get('beltlist/{belt}/edit', [BeltlistController::class, 'edit'])
-    ->name('beltlist.edit')
-    ->middleware('auth');
-
-// Categorylist
-
-Route::get('categorylist', [CategorylistController::class, 'index'])
-    ->name('categorylist')
-    ->middleware('auth');
-
-Route::get('categorylist/create', [CategorylistController::class, 'create'])
-    ->name('categorylist.create')
-    ->middleware('auth');
-
-Route::get('categorylist/{category}/edit', [CategorylistController::class, 'edit'])
-    ->name('categorylist.edit')
-    ->middleware('auth');
-
-// Admin
-
-Route::get('admin', [AdminController::class, 'index'])
-    ->name('admin')
-    ->middleware('auth');
-
-Route::get('admin/create', [AdminController::class, 'create'])
-    ->name('admin.create')
-    ->middleware('auth');
-
-Route::get('admin/{category}/edit', [AdminController::class, 'edit'])
-    ->name('admin.edit')
-    ->middleware('auth');
-
-// Journal
-
-Route::get('journal', [JournalController::class, 'index'])
-    ->name('admin')
-    ->middleware('auth');
-
-Route::get('journal/create', [JournalController::class, 'create'])
-    ->name('admin.create')
-    ->middleware('auth');
-
-Route::get('journal/{category}/edit', [JournalController::class, 'edit'])
-    ->name('admin.edit')
-    ->middleware('auth');
