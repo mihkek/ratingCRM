@@ -49,10 +49,10 @@
     </div>
 
     <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/statistics">
+      <Link class="group flex items-center py-3" href="/ratings">
         <icon name="star" class="mr-2 w-4 h-4"
-              :class="isUrl('statistics') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('statistics') ? 'text-white' : 'text-black group-hover:text-white'">РЕЙТИНГИ</div>
+              :class="isUrl('ratings') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
+        <div :class="isUrl('ratings') ? 'text-white' : 'text-black group-hover:text-white'">РЕЙТИНГИ</div>
       </Link>
     </div>
 

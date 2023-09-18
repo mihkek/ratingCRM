@@ -12,6 +12,7 @@ use App\Http\Controllers\BeltlistController;
 use App\Http\Controllers\CategorylistController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RatingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -104,7 +105,15 @@ Route::put('organizations/{organization}/restore', [OrganizationsController::cla
     ->name('organizations.restore')
     ->middleware('auth');
 
+
+// Ratings
+
+Route::get('ratings', [RatingsController::class, 'index'])
+    ->name('ratings')
+    ->middleware('auth');
+
 // Contacts
+
 
 Route::get('contacts', [ContactsController::class, 'index'])
     ->name('contacts')
