@@ -21,7 +21,9 @@
           </div>
           <div class="md:text-md flex items-center justify-between p-4 w-full text-sm bg-white border-b md:px-12 md:py-0">
 <!--            <div class="mr-4 mt-1">{{ auth.user.account.name }}</div>-->
-            <div class="mr-4 mt-1"></div>
+          <BurderButton class="block md:hidden" @click="burderOpened = !burderOpened" />
+            <div class="mr-4 mt-1">
+            </div>
             <dropdown class="mt-1" placement="bottom-end">
               <template #default>
                 <div class="group flex items-center cursor-pointer select-none">
@@ -44,6 +46,7 @@
         </div>
         <div class="md:flex md:flex-grow md:overflow-hidden">
           <main-menu class="hidden flex-shrink-0 p-4 w-56 bg-indigo-800 overflow-y-auto md:block" />
+          <main-menu v-if="burderOpened" class="block flex-shrink-0 p-4 w-56 bg-indigo-800 overflow-y-auto md:hidden fixed top-119 z-50 h-full" />
           <div class="px-4 py-8 md:flex-1 md:p-12 md:overflow-y-auto" scroll-region>
             <flash-messages />
             <slot />
@@ -61,6 +64,7 @@ import Logo from '@/Shared/Logo'
 import Dropdown from '@/Shared/Dropdown'
 import MainMenu from '@/Shared/MainMenu'
 import FlashMessages from '@/Shared/FlashMessages'
+import BurderButton from './BurderButton.vue'
 
 export default {
   components: {
@@ -70,9 +74,15 @@ export default {
     Link,
     Logo,
     MainMenu,
+    BurderButton
   },
   props: {
     auth: Object,
   },
+  data(){
+    return {
+      burderOpened: false
+    }
+  }
 }
 </script>
