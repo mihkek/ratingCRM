@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head title="Contacts" />
+    <Head title="Achievements" />
     <h1 class="mb-8 text-3xl font-bold">Журнал достижений</h1>
     <div class="flex items-center justify-between mb-6">
       <!-- <search-filter v-model="form.search" class="mr-4 w-full max-w-md" @reset="reset">
@@ -11,16 +11,10 @@
           <option value="only">Only Trashed</option>
         </select>
       </search-filter> -->
-      <Link class="btn-indigo" href="/contacts/create">
+      <Link class="btn-indigo" href="/achievements/create">
         <span>Создать</span>
         <span class="hidden md:inline">&nbsp;Достижение</span>
       </Link>
-    </div>
-    <div class="block max-w-full mb-5 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Батраков Михаил Сакитович</h5>
-        <p class="text-2xl font-normal text-gray-700 dark:text-gray-400"><strong>Пояс</strong> - Оранжевый (10 кю) .</p>
-        <p class="text-2xl font-normal text-gray-700 dark:text-gray-400"><strong>Разряд</strong> - Без разряда .</p>
-        <p class="text-2xl font-normal text-gray-700 dark:text-gray-400"><strong>Наставник</strong> - Иванов Иван Иваныч .</p>
     </div>
     <div class="bg-white rounded-md shadow overflow-x-auto">
       <table class="w-full whitespace-nowrap">
@@ -31,48 +25,48 @@
           <th class="pb-4 pt-6 px-6">Мояши</th>
           <th class="pb-4 pt-6 px-6" colspan="2">Наставник</th>
         </tr>
-        <tr v-for="contact in contacts" :key="contact.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
+        <tr v-for="contact in achievements" :key="contact.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
-            <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`/contacts/1/edit`">
+            <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`/achievements/1/edit`">
               {{ contact.student }}
               <icon v-if="contact.deleted_at" name="trash" class="flex-shrink-0 ml-2 w-3 h-3 fill-gray-400" />
             </Link>
           </td>
           <td class="border-t">
-            <Link class="flex items-center px-6 py-4" :href="`/contacts/1/edit`" tabindex="-1">
+            <Link class="flex items-center px-6 py-4" :href="`/achievements/1/edit`" tabindex="-1">
               <div v-if="contact.progress_name">
                 {{ contact.progress_name }}
               </div>
             </Link>
           </td>
           <td class="border-t">
-            <Link class="flex items-center px-6 py-4" :href="`/contacts/1/edit`" tabindex="-1">
+            <Link class="flex items-center px-6 py-4" :href="`/achievements/1/edit`" tabindex="-1">
               {{ contact.date }}
             </Link>
           </td>
           <td class="border-t">
-            <Link class="flex items-center px-6 py-4" :href="`/contacts/1/edit`" tabindex="-1">
+            <Link class="flex items-center px-6 py-4" :href="`/achievements/1/edit`" tabindex="-1">
               {{ contact.moyashi }}
             </Link>
           </td>
           <td class="border-t">
-            <Link class="flex items-center px-6 py-4" :href="`/contacts/1/edit`" tabindex="-1">
+            <Link class="flex items-center px-6 py-4" :href="`/achievements/1/edit`" tabindex="-1">
               {{ contact.trainer }}
             </Link>
           </td>
 
           <td class="w-px border-t">
-            <Link class="flex items-center px-4" :href="`/contacts/1/edit`" tabindex="-1">
+            <Link class="flex items-center px-4" :href="`/achievements/1/edit`" tabindex="-1">
               <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
             </Link>
           </td>
         </tr>
-        <tr v-if="contacts.length === 0">
+        <tr v-if="achievements.length === 0">
           <td class="px-6 py-4 border-t" colspan="4">Достижение ещё нет.</td>
         </tr>
       </table>
     </div>
-    <!-- <pagination class="mt-6" :links="contacts.links" /> -->
+    <!-- <pagination class="mt-6" :links="achievements.links" /> -->
   </div>
 </template>
 
@@ -97,7 +91,7 @@ export default {
   layout: Layout,
   props: {
     filters: Object,
-    contacts: Object,
+    achievements: Object,
   },
   data() {
     return {
@@ -111,7 +105,7 @@ export default {
     form: {
       deep: true,
       handler: throttle(function () {
-        this.$inertia.get('/contacts', pickBy(this.form), { preserveState: true })
+        this.$inertia.get('/achievements', pickBy(this.form), { preserveState: true })
       }, 150),
     },
   },

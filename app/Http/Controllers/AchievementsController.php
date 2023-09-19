@@ -11,40 +11,33 @@ use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Carbon\Carbon;
 
-class ContactsController extends Controller
+class AchievementsController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Contacts/Index', [
+        return Inertia::render('Achievements/Index', [
             'filters' => Request::all('search', 'trashed'),
-            'contacts' => ProgressTestData::$DATA,
+            'achievements' => ProgressTestData::$DATA,
             'links' => []
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Contacts/Create', [
-            'organizations' => Auth::user()->account
-                ->organizations()
-                ->orderBy('name')
-                ->get()
-                ->map
-                ->only('id', 'name'),
-        ]);
+        return Inertia::render('Achievements/Create', []);
     }
 
     public function viewone()
     {
-        return Inertia::render('Contacts/ViewOne', [
+        return Inertia::render('Achievements/ViewOne', [
             'filters' => Request::all('search', 'trashed'),
-            'contacts' => ProgressTestData::generatePersonalArray(),
+            'achievements' => ProgressTestData::generatePersonalArray(),
             'links' => []
         ]);
     }
     public function store()
     {
-        // Auth::user()->account->contacts()->create(
+        // Auth::user()->account->achievements()->create(
         //     Request::validate([
         //         'first_name' => ['required', 'max:50'],
         //         'last_name' => ['required', 'max:50'],
@@ -61,12 +54,12 @@ class ContactsController extends Controller
         //     ])
         // );
 
-        return Redirect::route('contacts')->with('success', 'Данные успешно сохранены.');
+        return Redirect::route('achievements')->with('success', 'Данные успешно сохранены.');
     }
 
     public function edit(Contact $contact)
     {
-        return Inertia::render('Contacts/Edit', [
+        return Inertia::render('Achievements/Edit', [
             'contact' => [
                 'id' => $contact->id,
                 'first_name' => $contact->first_name,
@@ -81,11 +74,6 @@ class ContactsController extends Controller
                 'postal_code' => $contact->postal_code,
                 'deleted_at' => $contact->deleted_at,
             ],
-            'organizations' => Auth::user()->account->organizations()
-                ->orderBy('name')
-                ->get()
-                ->map
-                ->only('id', 'name'),
         ]);
     }
 
@@ -95,10 +83,6 @@ class ContactsController extends Controller
             Request::validate([
                 'first_name' => ['required', 'max:50'],
                 'last_name' => ['required', 'max:50'],
-                'organization_id' => [
-                    'nullable',
-                    Rule::exists('organizations', 'id')->where(fn ($query) => $query->where('account_id', Auth::user()->account_id)),
-                ],
                 'email' => ['nullable', 'max:50', 'email'],
                 'phone' => ['nullable', 'max:50'],
                 'address' => ['nullable', 'max:150'],

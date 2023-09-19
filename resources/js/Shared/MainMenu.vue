@@ -2,22 +2,22 @@
   <div>
 
     <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/users">
+      <Link class="group flex items-center py-3" href="/students">
         <icon name="students" class="mr-2 w-4 h-4"
               :class="isUrl('students') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
         <div :class="isUrl('students') ? 'text-white' : 'text-black group-hover:text-white'">Ученики</div>
       </Link>
     </div>
    <div class="mb-4">
-     <Link class="group flex items-center py-3" href="/contacts">
+     <Link class="group flex items-center py-3" href="/achievements">
        <icon name="list" class="mr-2 w-4 h-4"
-            :class="isUrl('contacts') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('contacts') ? 'text-white' : 'text-black group-hover:text-white'">Журнал достижений
+            :class="isUrl('achievements') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
+        <div :class="isUrl('achievements') ? 'text-white' : 'text-black group-hover:text-white'">Журнал достижений
        </div>
       </Link>
    </div>
     <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/reports">
+      <Link class="group flex items-center py-3" href="/mentors">
         <icon name="ticher" class="mr-2 w-4 h-4"
               :class="isUrl('mentors') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
         <div :class="isUrl('mentors') ? 'text-white' : 'text-black group-hover:text-white'">Наставники</div>
@@ -41,7 +41,7 @@
     </div>
 
     <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/categorylist">
+      <Link class="group flex items-center py-3" href="/ranks">
         <icon name="san" class="mr-2 w-4 h-4"
               :class="isUrl('ranks') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
         <div :class="isUrl('ranks') ? 'text-white' : 'text-black group-hover:text-white'">Разряды</div>

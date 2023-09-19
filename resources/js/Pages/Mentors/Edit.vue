@@ -2,7 +2,7 @@
   <div>
     <Head :title="`${form.first_name}`" />
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/reports">Наставники</Link>
+      <Link class="text-indigo-400 hover:text-indigo-600" href="/mentors">Наставники</Link>
       <span class="text-indigo-400 font-medium">/</span>
       {{ form.first_name }} {{ form.last_name }}
     </h1>
@@ -16,13 +16,13 @@
         </div>
 
                 <div class="flex items-center px-8 py-4 bg-gray-50 border-t border-gray-100">
-  
+
           <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Обновить данные</loading-button>
         </div>
 
       </form>
     </div>
-   
+
   </div>
 </template>
 
