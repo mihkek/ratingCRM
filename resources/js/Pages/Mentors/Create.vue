@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head title="" />
+    <Head title="Новый Наставник" />
     <h1 class="mb-8 text-3xl font-bold">
       <Link class="text-indigo-400 hover:text-indigo-600" href="/reports">Наставники</Link>
       <span class="text-indigo-400 font-medium">/</span> Создать
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     store() {
-      this.form.post('/beltlist')
+      this.form.post('/mentors')
     },
   },
 }

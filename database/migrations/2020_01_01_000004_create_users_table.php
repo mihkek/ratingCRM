@@ -18,11 +18,13 @@ class CreateUsersTable extends Migration
             $table->integer('account_id')->index();
             $table->string('first_name', 25);
             $table->string('last_name', 25);
+            $table->string('surname', 25);
             $table->string('email', 50)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->boolean('owner')->default(false);
             $table->string('photo_path', 100)->nullable();
+            $table->integer('role_id');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

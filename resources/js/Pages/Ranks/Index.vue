@@ -4,7 +4,7 @@
     <h1 class="mb-8 text-3xl font-bold">Разряды</h1>
 
     <div class="grid place-items-end mb-2">
-      <Link class="btn-indigo" href="/categorylist/create">
+      <Link class="btn-indigo" href="/ranks/create">
         <span>Добавить</span>
         <span class="hidden md:inline">&nbsp;Разряд</span>
       </Link>
@@ -19,13 +19,13 @@
         <tr v-for="rank in ranks" class="hover:bg-gray-100 focus-within:bg-gray-100">
 
           <td class="border-t">
-            <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`/categorylist/${rank.id}/edit`">
+            <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`/ranks/${rank.id}/edit`">
               {{ rank.name }}
             </Link>
           </td>
 
           <td class="w-px border-t">
-            <Link class="flex items-center px-4" :href="`/categorylist/${rank.id}/edit`" tabindex="-1">
+            <Link class="flex items-center px-4" :href="`/ranks/${rank.id}/edit`" tabindex="-1">
               <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400"/>
             </Link>
           </td>

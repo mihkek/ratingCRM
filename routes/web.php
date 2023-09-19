@@ -7,11 +7,10 @@ use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\OrganizationsController;
 use App\Http\Controllers\RankController;
-use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProgressController;
-use App\Http\Controllers\BeltlistController;
-use App\Http\Controllers\CategorylistController;
+use App\Http\Controllers\BeltsController;
+use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RatingsController;
@@ -47,15 +46,15 @@ Route::get('/', [DashboardController::class, 'index'])
 | Ученики
 |--------------------------------------------------------------------------
 */
-Route::get('students', [UsersController::class, 'index'])
+Route::get('students', [StudentsController::class, 'index'])
     ->name('students')
     ->middleware('auth');
 
-Route::get('students/create', [UsersController::class, 'create'])
+Route::get('students/create', [StudentsController::class, 'create'])
     ->name('students.create')
     ->middleware('auth');
 
-Route::post('students', [UsersController::class, 'store'])
+Route::post('students', [StudentsController::class, 'store'])
     ->name('students.store')
     ->middleware('auth');
 
@@ -118,16 +117,16 @@ Route::get('progress/{progres}/edit', [ProgressController::class, 'edit'])
 | Пояса
 |--------------------------------------------------------------------------
 */
-Route::get('beltlist', [BeltlistController::class, 'index'])
-    ->name('beltlist')
+Route::get('belts', [BeltsController::class, 'index'])
+    ->name('belts')
     ->middleware('auth');
 
-Route::get('beltlist/create', [BeltlistController::class, 'create'])
-    ->name('beltlist.create')
+Route::get('belts/create', [BeltsController::class, 'create'])
+    ->name('belts.create')
     ->middleware('auth');
 
-Route::get('beltlist/{belt}/edit', [BeltlistController::class, 'edit'])
-    ->name('beltlist.edit')
+Route::get('belts/{belt}/edit', [BeltsController::class, 'edit'])
+    ->name('belts.edit')
     ->middleware('auth');
 
 /*

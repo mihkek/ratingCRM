@@ -10,11 +10,11 @@ class RankController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Rank/Index', [
-            'rank' => Rank::all()->map(function($category){
+        return Inertia::render('Ranks/Index', [
+            'ranks' => Rank::all()->map(function($rank){
                 return [
-                    'id' => $category->id,
-                    'name' => $category->name
+                    'id' => $rank->id,
+                    'name' => $rank->name
                 ];
             })
         ]);
@@ -22,15 +22,15 @@ class RankController extends Controller
 
     public function create()
     {
-        return Inertia::render('Rank/Create');
+        return Inertia::render('Ranks/Create');
     }
 
-    public function edit(Categorylist $category)
+    public function edit(Rank $rank)
     {
-        return Inertia::render('Rank/Edit', [
-            'rank' => [
-                'id' => $category->id,
-                'name' => $category->name,
+        return Inertia::render('Ranks/Edit', [
+            'ranks' => [
+                'id' => $rank->id,
+                'name' => $rank->name,
 
             ],
         ]);
