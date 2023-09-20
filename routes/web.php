@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\AchievementsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\MentorController;
-use App\Http\Controllers\OrganizationsController;
 use App\Http\Controllers\RankController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProgressController;
@@ -192,74 +191,39 @@ Route::get('journal/{category}/edit', [JournalController::class, 'edit'])
 
 
 
+// Achievements
 
 
-
-
-// Organizations
-
-Route::get('organizations', [OrganizationsController::class, 'index'])
-    ->name('organizations')
+Route::get('achievements', [AchievementsController::class, 'index'])
+    ->name('achievements')
     ->middleware('auth');
 
-Route::get('organizations/create', [OrganizationsController::class, 'create'])
-    ->name('organizations.create')
+Route::get('achievements/create', [AchievementsController::class, 'create'])
+    ->name('achievements.create')
     ->middleware('auth');
 
-Route::post('organizations', [OrganizationsController::class, 'store'])
-    ->name('organizations.store')
+Route::post('achievements', [AchievementsController::class, 'store'])
+    ->name('achievements.store')
     ->middleware('auth');
 
-Route::get('organizations/{organization}/edit', [OrganizationsController::class, 'edit'])
-    ->name('organizations.edit')
+Route::get('achievements/{achievement}/edit', [AchievementsController::class, 'edit'])
+    ->name('achievements.edit')
     ->middleware('auth');
 
-Route::put('organizations/{organization}', [OrganizationsController::class, 'update'])
-    ->name('organizations.update')
+Route::get('achievements/{achievement}/view', [AchievementsController::class, 'viewone'])
+    ->name('achievements.viewone')
     ->middleware('auth');
 
-Route::delete('organizations/{organization}', [OrganizationsController::class, 'destroy'])
-    ->name('organizations.destroy')
+Route::put('achievements/{achievement}', [AchievementsController::class, 'update'])
+    ->name('achievements.update')
     ->middleware('auth');
 
-Route::put('organizations/{organization}/restore', [OrganizationsController::class, 'restore'])
-    ->name('organizations.restore')
+Route::delete('achievements/{achievement}', [AchievementsController::class, 'destroy'])
+    ->name('achievements.destroy')
     ->middleware('auth');
 
-
-// Contacts
-
-
-Route::get('contacts', [ContactsController::class, 'index'])
-    ->name('contacts')
-    ->middleware('auth');
-
-Route::get('contacts/create', [ContactsController::class, 'create'])
-    ->name('contacts.create')
-    ->middleware('auth');
-
-Route::post('contacts', [ContactsController::class, 'store'])
-    ->name('contacts.store')
-    ->middleware('auth');
-
-Route::get('contacts/{contact}/edit', [ContactsController::class, 'edit'])
-    ->name('contacts.edit')
-    ->middleware('auth');
-
-Route::get('contacts/{contact}/view', [ContactsController::class, 'viewone'])
-    ->name('contacts.viewone')
-    ->middleware('auth');
-
-Route::put('contacts/{contact}', [ContactsController::class, 'update'])
-    ->name('contacts.update')
-    ->middleware('auth');
-
-Route::delete('contacts/{contact}', [ContactsController::class, 'destroy'])
-    ->name('contacts.destroy')
-    ->middleware('auth');
-
-Route::put('contacts/{contact}/restore', [ContactsController::class, 'restore'])
-    ->name('contacts.restore')
+Route::put('achievements/{achievement}/restore', [AchievementsController::class, 'restore'])
+    ->name('achievements.restore')
     ->middleware('auth');
 
 
@@ -268,4 +232,3 @@ Route::put('contacts/{contact}/restore', [ContactsController::class, 'restore'])
 Route::get('/img/{path}', [ImagesController::class, 'show'])
     ->where('path', '.*')
     ->name('image');
-

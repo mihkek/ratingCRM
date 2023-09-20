@@ -9,10 +9,10 @@
       </Link>
     </div>
    <div class="mb-4">
-     <Link class="group flex items-center py-3" href="/contacts">
+     <Link class="group flex items-center py-3" href="/achievements">
        <icon name="list" class="mr-2 w-4 h-4"
-            :class="isUrl('contacts') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('contacts') ? 'text-white' : 'text-black group-hover:text-white'">Журнал достижений
+            :class="isUrl('achievements') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
+        <div :class="isUrl('achievements') ? 'text-white' : 'text-black group-hover:text-white'">Журнал достижений
        </div>
       </Link>
    </div>

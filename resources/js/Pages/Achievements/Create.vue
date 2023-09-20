@@ -22,7 +22,7 @@
           </select-input>
         </div>
         <div class="flex items-center justify-end px-8 py-4 bg-gray-50 border-t border-gray-100">
-          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Сохранить</loading-button>
+          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Добавить достижение</loading-button>
         </div>
       </form>
     </div>
@@ -46,7 +46,6 @@ export default {
   },
   layout: Layout,
   props: {
-    organizations: Array,
   },
   remember: 'form',
   data() {
