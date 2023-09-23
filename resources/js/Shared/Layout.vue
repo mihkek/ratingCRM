@@ -48,8 +48,8 @@
           </div>
         </div>
         <div class="md:flex md:flex-grow md:overflow-hidden">
-          <main-menu :auth="auth" class="hidden flex-shrink-0 p-4 w-56 bg-indigo-800 overflow-y-auto md:block" />
-          <main-menu :auth="auth" @click="burderOpened = false" v-if="burderOpened" class="block flex-shrink-0 p-4 w-56 bg-indigo-800 overflow-y-auto md:hidden fixed top-119 z-50 h-full" />
+          <main-menu :auth="auth" class="hidden flex-shrink-0 p-4 w-64 bg-indigo-800 overflow-y-auto md:block" />
+          <main-menu :auth="auth" class="block flex-shrink-0 p-4 w-64 bg-indigo-800 overflow-y-auto md:hidden fixed top-119 z-50 h-full" @menuItemClick="burderOpened = false" v-if="burderOpened" />
           <div class="px-4 py-8 md:flex-1 md:p-12 md:overflow-y-auto" scroll-region>
             <flash-messages />
             <slot />
@@ -68,6 +68,7 @@ import Dropdown from '@/Shared/Dropdown'
 import MainMenu from '@/Shared/MainMenu'
 import FlashMessages from '@/Shared/FlashMessages'
 import BurderButton from './BurderButton.vue'
+import 'vue3-toastify/dist/index.css';
 
 export default {
   components: {

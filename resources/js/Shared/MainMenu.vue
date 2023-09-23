@@ -1,92 +1,20 @@
 <template>
   <div>
-    <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/students">
-        <icon name="students" class="mr-2 w-4 h-4"
-              :class="isUrl('students') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('students') ? 'text-white' : 'text-black group-hover:text-white'">Ученики</div>
-      </Link>
-    </div>
-   <div class="mb-4">
-     <Link class="group flex items-center py-3" href="/achievements">
-       <icon name="list" class="mr-2 w-4 h-4"
-            :class="isUrl('achievements') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('achievements') ? 'text-white' : 'text-black group-hover:text-white'">Журнал достижений
-       </div>
-      </Link>
-   </div>
-    <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/mentors">
-        <icon name="ticher" class="mr-2 w-4 h-4"
-              :class="isUrl('mentors') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('mentors') ? 'text-white' : 'text-black group-hover:text-white'">Наставники</div>
-      </Link>
-    </div>
-
-    <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/progress">
-        <icon name="flag" class="mr-2 w-4 h-4"
-              :class="isUrl('progress') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('progress') ? 'text-white' : 'text-black group-hover:text-white'">Достижения</div>
-      </Link>
-    </div>
-
-    <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/belts">
-        <icon name="poias" class="mr-2 w-4 h-4"
-              :class="isUrl('belts') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('belts') ? 'text-white' : 'text-black group-hover:text-white'">Пояса</div>
-      </Link>
-    </div>
-
-    <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/ranks">
-        <icon name="san" class="mr-2 w-4 h-4"
-              :class="isUrl('ranks') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('ranks') ? 'text-white' : 'text-black group-hover:text-white'">Разряды</div>
-      </Link>
-    </div>
-
-    <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/ratings">
-        <icon name="star" class="mr-2 w-4 h-4"
-              :class="isUrl('ratings') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('ratings') ? 'text-white' : 'text-black group-hover:text-white'">РЕЙТИНГИ</div>
-      </Link>
-    </div>
-
-    <div v-if="auth.user.role.slug == 'admin'" class="mb-4" >
-      <Link class="group flex items-center py-3" href="/admin">
-        <icon name="razdel" class="mr-2 w-4 h-4"
-              :class="isUrl('admin') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('admin') ? 'text-white' : 'text-black group-hover:text-white'">Раздел админа</div>
-         <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
-      </Link>
-    </div>
-
-    <div class="mb-4">
-      <Link class="group flex items-center py-3" href="/journal">
-        <icon name="razdel" class="mr-2 w-4 h-4"
-              :class="isUrl('journal') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('journal') ? 'text-white' : 'text-black group-hover:text-white'">Раздел наставника</div>
-         <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
-      </Link>
-
-    </div>
-
-    <div class="mb-4">
-      <Link class="group flex items-center py-3" href="https://moyashi.ru/">
-        <icon name="site" class="mr-2 w-4 h-4"
-              :class="isUrl('') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
-        <div :class="isUrl('') ? 'text-white' : 'text-black group-hover:text-white'">На сайт</div>
-      </Link>
-
-    </div>
-
+    <menu-item @onClick="itemClick"  link="students" label="Ученики" infoMessage="Текст информации о разделе" />
+    <menu-item @onClick="itemClick" link="achievements"  iconName="list" label="Журнал достижений" infoMessage="Текст информации о разделе" />
+    <menu-item @onClick="itemClick" link="mentors" iconName="ticher" label="Наставники" infoMessage="Текст информации о разделе" />
+    <menu-item @onClick="itemClick" link="progress" iconName="flag" label="Достижения" infoMessage="Текст информации о разделе" />
+    <menu-item @onClick="itemClick" link="belts" iconName="poias" label="Пояса" infoMessage="Текст информации о разделе" />
+    <menu-item @onClick="itemClick" link="ranks" iconName="san" label="Разряды" infoMessage="Текст информации о разделе" />
+    <menu-item @onClick="itemClick" link="ratings" iconName="star" label="РЕЙТИНГИ" infoMessage="Текст информации о разделе" />
+    <menu-item @onClick="itemClick" link="admin" iconName="razdel" label="Раздел админа" infoMessage="Текст информации о разделе" />
+    <menu-item @onClick="itemClick" link="journal" iconName="razdel" label="Раздел наставника" infoMessage="Текст информации о разделе" />
+    <menu-item @onClick="itemClick" link="" iconName="site" label="На сайт" infoMessage="Текст информации о разделе" />
   </div>
 </template>
 
 <script>
+import MenuItem from './Menu/MenuItem.vue'
 import {Link} from '@inertiajs/inertia-vue3'
 import Icon from '@/Shared/Icon'
 
@@ -94,7 +22,9 @@ export default {
   components: {
     Icon,
     Link,
+    MenuItem
   },
+  emits: ['menuItemClick'],
   props: {
     auth: Object,
   },
@@ -106,6 +36,9 @@ export default {
     // })
   },
   methods: {
+    itemClick(){
+      this.$emit('menuItemClick')
+    },
     isUrl(...urls) {
       let currentUrl = this.$page.url.substr(1)
       if (urls[0] === '') {
