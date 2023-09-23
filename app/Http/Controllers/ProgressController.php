@@ -7,25 +7,25 @@ use App\Models\Progress;
 
 class ProgressController extends Controller
 {
-    public function index()
+    public function index(StudentsService $studentsService)
     {
         return Inertia::render('Progress/Index', [
-            'progress' => Progress::all()->map(function($progres){
-            	return [
-            		'id' => $progres->id,
-            		'progress_name' => $progres->progress_name,
-            		'moiashi' => $progres->moiashi,
-            	];
+            'progress' => Progress::all()->map(function ($progres) {
+                return [
+                    'id' => $progres->id,
+                    'progress_name' => $progres->progress_name,
+                    'moiashi' => $progres->moiashi,
+                ];
             })
-           ]);
+        ]);
     }
 
-     public function create()
+    public function create()
     {
         return Inertia::render('Progress/Create');
     }
 
-        public function edit(Progress $progres)
+    public function edit(Progress $progres)
     {
         return Inertia::render('Progress/Edit', [
             'progres' => [
@@ -34,8 +34,7 @@ class ProgressController extends Controller
                 'moiashi' => $progres->moiashi,
 
             ],
-            
+
         ]);
     }
-
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -61,9 +62,14 @@ class DatabaseSeeder extends Seeder
             'role_id' => 3,
         ]);
 
+        $student = User::where('role_id', 3)->first();
+
+        DB::table('personal_student_progress')->insert([
+            'link' => 'www.example.ru',
+            'user_id' => $student->id
+        ]);
         // Создаём тестового админа
         User::factory()->create([
-
             'first_name' => 'Костин',
             'last_name' => 'Сергей',
             'surname' => 'Владиславович',

@@ -16,7 +16,14 @@
         <span class="hidden md:inline">&nbsp;Достижение</span>
       </Link>
     </div>
+    <div v-if="auth.user.role.slug == 'student'" class="bg-white rounded-md shadow overflow-hidden">
+          <div class="flex flex-wrap -mb-8 -mr-6 p-8 items-center">
+            <text-input @input="progress_changed = true" v-model="personal_progress" class="pb-5 pr-6 w-full lg:w-1/2" label="Личный прогресс:" />
+            <loading-button @click="savePersonalProgress" :loading="true" class="btn-indigo h-1/2 cursor-pointer" :class="progress_changed ? '' : 'hidden'" type="submit">Сохранить</loading-button>
+          </div>
+      </div>
     <div class="bg-white rounded-md shadow overflow-x-auto">
+
       <table class="w-full whitespace-nowrap">
         <tr class="text-left font-bold">
           <th class="pb-4 pt-6 px-6">Ученик</th>
@@ -75,26 +82,33 @@ import { Head, Link } from '@inertiajs/inertia-vue3'
 import Icon from '@/Shared/Icon'
 import pickBy from 'lodash/pickBy'
 import Layout from '@/Shared/Layout'
+import TextInput from '@/Shared/TextInput'
 import throttle from 'lodash/throttle'
 import mapValues from 'lodash/mapValues'
 import Pagination from '@/Shared/Pagination'
 import SearchFilter from '@/Shared/SearchFilter'
+import axios from 'axios'
 
 export default {
   components: {
     Head,
     Icon,
     Link,
+    TextInput,
     Pagination,
     SearchFilter,
   },
   layout: Layout,
   props: {
     filters: Object,
+    personalProgress: String,
     achievements: Object,
+    auth: Object,
   },
   data() {
     return {
+      progress_changed: false,
+      personal_progress: '',
       form: {
         search: this.filters.search,
         trashed: this.filters.trashed,
@@ -109,7 +123,18 @@ export default {
       }, 150),
     },
   },
+  mounted(){
+    console.log(this.personalProgress)
+    this.personal_progress = this.personalProgress.link
+  },
   methods: {
+    savePersonalProgress(){
+      axios.post('/api/save-progress', {
+        value: this.personal_progress
+      }).then(res => {
+        console.log(res)
+      })
+    },
     reset() {
       this.form = mapValues(this.form, () => null)
     },

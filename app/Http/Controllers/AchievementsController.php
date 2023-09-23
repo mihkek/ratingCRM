@@ -10,18 +10,30 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Carbon\Carbon;
+use App\Services\StudentsService;
 
 class AchievementsController extends Controller
 {
-    public function index()
+    public function index(StudentsService $studentsService)
     {
+        $personal = null;
+        if (Auth::user()->role->slug == 'student') {
+            $personal = $studentsService->getPersonalProgress(Auth::user()->id);
+        }
         return Inertia::render('Achievements/Index', [
+            'personalProgress' => $personal,
+            'user_role' => Auth::user()->role,
             'filters' => Request::all('search', 'trashed'),
             'achievements' => ProgressTestData::$DATA,
             'links' => []
         ]);
     }
 
+    public function save_personal_progress($request, StudentsService $studentsService)
+    {
+        $studentsService->savePersonalProgress(Auth::user()->id, $request->value);
+        return response()->json(['result' => true]);
+    }
     public function create()
     {
         return Inertia::render('Achievements/Create', []);
