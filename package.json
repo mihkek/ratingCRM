@@ -37,6 +37,7 @@
         "uuid": "^8.3.2",
         "vue": "^3.2.27",
         "vue-loader": "^16.2.0",
+        "vue3-toastify": "^0.1.13",
         "webpack-node-externals": "^3.0.0"
     }
 }

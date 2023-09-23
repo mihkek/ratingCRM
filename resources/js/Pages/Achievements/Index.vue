@@ -88,6 +88,8 @@ import mapValues from 'lodash/mapValues'
 import Pagination from '@/Shared/Pagination'
 import SearchFilter from '@/Shared/SearchFilter'
 import axios from 'axios'
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 export default {
   components: {
@@ -130,9 +132,13 @@ export default {
   methods: {
     savePersonalProgress(){
       axios.post('/api/save-progress', {
+        user_id: this.auth.user.id,
         value: this.personal_progress
-      }).then(res => {
+      }).then((res) => {
         console.log(res)
+        toast.success("Данные успешно сохранены", {
+          autoClose: 3000,
+        });
       })
     },
     reset() {

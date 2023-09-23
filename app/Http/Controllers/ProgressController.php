@@ -7,7 +7,7 @@ use App\Models\Progress;
 
 class ProgressController extends Controller
 {
-    public function index(StudentsService $studentsService)
+    public function index()
     {
         return Inertia::render('Progress/Index', [
             'progress' => Progress::all()->map(function ($progres) {

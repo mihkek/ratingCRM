@@ -7,6 +7,7 @@ use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request as ParamRequest;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Carbon\Carbon;
@@ -14,11 +15,16 @@ use App\Services\StudentsService;
 
 class AchievementsController extends Controller
 {
-    public function index(StudentsService $studentsService)
+    private $studentsService;
+    public function __construct()
+    {
+        $this->studentsService = new StudentsService();
+    }
+    public function index()
     {
         $personal = null;
         if (Auth::user()->role->slug == 'student') {
-            $personal = $studentsService->getPersonalProgress(Auth::user()->id);
+            $personal = $this->studentsService->getPersonalProgress(Auth::user()->id);
         }
         return Inertia::render('Achievements/Index', [
             'personalProgress' => $personal,
@@ -29,9 +35,9 @@ class AchievementsController extends Controller
         ]);
     }
 
-    public function save_personal_progress($request, StudentsService $studentsService)
+    public function save_personal_progress(ParamRequest $request)
     {
-        $studentsService->savePersonalProgress(Auth::user()->id, $request->value);
+        $this->studentsService->savePersonalProgress($request->user_id, $request->value);
         return response()->json(['result' => true]);
     }
     public function create()

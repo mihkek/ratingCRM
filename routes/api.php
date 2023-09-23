@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::post('/save-progress', AchievementsController::class, 'save_personal_progress');
+Route::post('/save-progress', [AchievementsController::class, 'save_personal_progress']);
