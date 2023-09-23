@@ -41,22 +41,22 @@ class MentorController extends Controller
 
     public function store()
     {
-        Request::validate([
-            'first_name' => ['required', 'max:50'],
-            'last_name' => ['required', 'max:50'],
-            'surname' => ['required', 'max:50'],
-        ]);
+        // Request::validate([
+        //     'first_name' => ['required', 'max:50'],
+        //     'last_name' => ['required', 'max:50'],
+        //     'surname' => ['required', 'max:50'],
+        // ]);
 
-        Auth::user()->account->users()->create([
-            'first_name' => Request::get('first_name'),
-            'last_name' => Request::get('last_name'),
-            'surname' => Request::get('last_name'),
-            'email' => Request::get('email'),
-            'password' => Request::get('password'),
-            'owner' => Request::get('owner'),
-            'role_id' => 3,
-            'photo_path' => Request::file('photo') ? Request::file('photo')->store('users') : null,
-        ]);
+        // Auth::user()->account->users()->create([
+        //     'first_name' => Request::get('first_name'),
+        //     'last_name' => Request::get('last_name'),
+        //     'surname' => Request::get('last_name'),
+        //     'email' => Request::get('email'),
+        //     'password' => Request::get('password'),
+        //     'owner' => Request::get('owner'),
+        //     'role_id' => 3,
+        //     'photo_path' => Request::file('photo') ? Request::file('photo')->store('users') : null,
+        // ]);
 
         return Redirect::route('students')->with('success', 'Ученик успешно создан.');
     }

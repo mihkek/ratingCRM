@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="mb-4">
       <Link class="group flex items-center py-3" href="/students">
         <icon name="students" class="mr-2 w-4 h-4"
@@ -56,7 +55,7 @@
       </Link>
     </div>
 
-    <div class="mb-4">
+    <div v-if="auth.user.role.slug == 'admin'" class="mb-4" >
       <Link class="group flex items-center py-3" href="/admin">
         <icon name="razdel" class="mr-2 w-4 h-4"
               :class="isUrl('admin') ? 'fill-white' : 'fill-black group-hover:fill-white'"/>
@@ -95,6 +94,16 @@ export default {
   components: {
     Icon,
     Link,
+  },
+  props: {
+    auth: Object,
+  },
+  mounted(){
+    // const currentUser = window.authUser;
+    console.log(this.auth.user)
+    // this.$inertia.get('').then((res) => {
+    //   console.log('res')
+    // })
   },
   methods: {
     isUrl(...urls) {
