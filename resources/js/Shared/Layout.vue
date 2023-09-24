@@ -3,7 +3,9 @@
     <div id="dropdown" />
     <div class="md:flex md:flex-col">
       <div class="md:flex md:flex-col md:h-screen">
-        <div class="flex md:flex-shrink-0">
+        <div class="flex md:flex-shrink-0 relative">
+          <NotificationsBell class="absolute top-4  right-24 md:right-44" style="top: 25px; "/>
+          <!-- <NotificationsBell class="md:hidden absolute top-4" style="top: 25px; right: 85px;"/> -->
           <div class="flex items-center justify-between px-6 py-4 bg-white md:flex-shrink-0 md:justify-center md:w-56">
             <div class="flex" href="/">
               <BurderButton class="block md:hidden" @click="burderOpened = !burderOpened" />
@@ -23,7 +25,6 @@
             </dropdown>
           </div>
           <div class="md:text-md flex items-center justify-between p-4 w-full text-sm bg-white border-b md:px-12 md:py-0">
-
             <div class="mr-4 mt-1">
             </div>
             <dropdown class="mt-1" placement="bottom-end">
@@ -69,6 +70,7 @@ import MainMenu from '@/Shared/MainMenu'
 import FlashMessages from '@/Shared/FlashMessages'
 import BurderButton from './BurderButton.vue'
 import 'vue3-toastify/dist/index.css';
+import NotificationsBell from './Notifications/NotificationsBell.vue'
 
 export default {
   components: {
@@ -78,7 +80,8 @@ export default {
     Link,
     Logo,
     MainMenu,
-    BurderButton
+    BurderButton,
+    NotificationsBell
   },
   props: {
     auth: Object,
