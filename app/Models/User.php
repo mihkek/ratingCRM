@@ -49,6 +49,15 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function getFio()
+    {
+        return trim("{$this->first_name} {$this->last_name} {$this->surname}");
+    }
+    public function jornal()
+    {
+        return $this->belongsTo(Jornal::class, 'id');
+    }
+
     public function resolveRouteBinding($value, $field = null)
     {
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();

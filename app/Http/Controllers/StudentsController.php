@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportStudents;
 use App\Http\Resources\StudenrsResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentsController extends Controller
 {
@@ -27,6 +29,10 @@ class StudentsController extends Controller
         return Inertia::render('Students/Create');
     }
 
+    public function exportExcel()
+    {
+        return Excel::download(new ExportStudents, 'Ученики.xlsx');
+    }
     public function store()
     {
         // Request::validate([

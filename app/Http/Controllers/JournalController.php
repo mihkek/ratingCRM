@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Constants\TestDataGenerators\JournalUsersTestData;
+use App\Exports\ExportJornal;
+use App\Models\Jornal;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -11,14 +13,23 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
 
 class JournalController extends Controller
 {
     public function index()
     {
+        $role = Auth::user()->role->slug;
+        if ($role == 'mentor') {
+            $users = Jornal::where('mentor_id', Auth::user()->id)->with('mentor')->get();
+        } else if ($role == 'admin') {
+            $users = Jornal::with('mentor')->get();
+        } else {
+            return response()->status(403);
+        }
         return Inertia::render('Journal/Index', [
             'filters' => Request::all('search', 'Имя', 'Пояс'),
-            'users' => JournalUsersTestData::generateBigArray()
+            'users' => $users
         ]);
     }
 
@@ -26,7 +37,17 @@ class JournalController extends Controller
     {
         return Inertia::render('Users/Create');
     }
-
+    public function exportExcel()
+    {
+        $role = Auth::user()->role->slug;
+        if ($role == 'mentor') {
+            return Excel::download(new ExportJornal(Auth::user()->id), 'Журнал наставника.xlsx');
+        } else if ($role == 'admin') {
+            return Excel::download(new ExportJornal(), 'Журнал наставника.xlsx');
+        } else {
+            return response()->status(403);
+        }
+    }
     public function store()
     {
         // Request::validate([

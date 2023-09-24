@@ -2,6 +2,7 @@
   <div>
     <Head title="Ученики" />
     <h1 class="mb-8 text-3xl font-bold">Журнал наставника</h1>
+
     <div class="flex items-center justify-between mb-6">
       <search-filter v-model="form.search" class="mr-4 w-full max-w-md" @reset="reset">
         <label class="block text-gray-700">ФИО:</label>
@@ -32,10 +33,9 @@
           <option value="only">4 разряд</option>
         </select>
       </search-filter>
-<!--       <Link class="btn-indigo" href="/users/create">
-        <span>Создать</span>
-        <span class="hidden md:inline">&nbsp;Ученика</span>
-      </Link> -->
+      <div @click="exportExcel" class="btn-indigo cursor-pointer" href="/students-excel">
+          <span>Экспорт в Excel</span>
+        </div>
     </div>
     <div class="bg-white rounded-md shadow overflow-x-auto">
       <table class="w-full whitespace-nowrap">
@@ -48,7 +48,7 @@
           <td class="border-t">
             <Link class="flex items-center px-6 py-4 focus:text-indigo-500">
               <img v-if="user.photo" class="block -my-2 mr-2 w-5 h-5 rounded-full" :src="user.photo" />
-              {{ user.name }}
+              {{ user.mentor.first_name + ' ' + user.mentor.last_name + ' '  + user.mentor.surname  }}
               <icon v-if="user.deleted_at" name="trash" class="flex-shrink-0 ml-2 w-3 h-3 fill-gray-400" />
             </Link>
           </td>
@@ -111,6 +111,9 @@ export default {
     },
   },
   methods: {
+    exportExcel(){
+      location.href="/journal-excel"
+    },
     reset() {
       this.form = mapValues(this.form, () => null)
     },

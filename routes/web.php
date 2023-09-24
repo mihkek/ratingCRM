@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 | Auth
 |--------------------------------------------------------------------------
 */
+
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
     ->name('login')
     ->middleware('guest');
@@ -48,6 +49,12 @@ Route::get('/', [DashboardController::class, 'index'])
 Route::get('students', [StudentsController::class, 'index'])
     ->name('students')
     ->middleware('auth');
+
+
+Route::get('students-excel', [StudentsController::class, 'exportExcel'])
+    ->name('students-excel')
+    ->middleware('auth');
+
 
 Route::get('students/create', [StudentsController::class, 'create'])
     ->name('students.create')
@@ -178,6 +185,10 @@ Route::get('admin/{category}/edit', [AdminController::class, 'edit'])
 */
 Route::get('journal', [JournalController::class, 'index'])
     ->name('admin')
+    ->middleware('auth');
+
+Route::get('journal-excel', [JournalController::class, 'exportExcel'])
+    ->name('journal-excel')
     ->middleware('auth');
 
 Route::get('journal/create', [JournalController::class, 'create'])

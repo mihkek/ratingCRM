@@ -23,7 +23,6 @@
           </div>
       </div>
     <div class="bg-white rounded-md shadow overflow-x-auto">
-
       <table class="w-full whitespace-nowrap">
         <tr class="text-left font-bold">
           <th class="pb-4 pt-6 px-6">Ученик</th>
@@ -88,7 +87,7 @@ import mapValues from 'lodash/mapValues'
 import Pagination from '@/Shared/Pagination'
 import SearchFilter from '@/Shared/SearchFilter'
 import axios from 'axios'
-import { toast } from 'vue3-toastify';
+import { toast } from 'vue3-toastify'
 
 export default {
   components: {

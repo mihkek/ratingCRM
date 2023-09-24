@@ -32,10 +32,15 @@
           <option value="only">4 разряд</option>
         </select>
       </search-filter>
-      <Link class="btn-indigo" href="/students/create">
-        <span>Создать</span>
-        <span class="hidden md:inline">&nbsp;Ученика</span>
-      </Link>
+      <div class="flex gap-3">
+        <div @click="exportExcel" class="btn-indigo cursor-pointer" href="/students-excel">
+          <span>Экспорт в Excel</span>
+        </div>
+        <Link class="btn-indigo" href="/students/create">
+          <span>Создать</span>
+          <span class="hidden md:inline">&nbsp;Ученика</span>
+        </Link>
+      </div>
     </div>
     <div class="bg-white rounded-md shadow overflow-x-auto">
       <table class="w-full whitespace-nowrap">
@@ -122,6 +127,9 @@ export default {
     },
   },
   methods: {
+    exportExcel(){
+      location.href="/students-excel"
+    },
     reset() {
       this.form = mapValues(this.form, () => null)
     },
