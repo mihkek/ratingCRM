@@ -15,7 +15,14 @@
     <script src="{{ mix('/js/app.js') }}" defer></script>
     @inertiaHead
 </head>
-<body class="font-sans leading-none text-gray-700 antialiased">
+<body class="font-sans leading-none text-gray-700 antialiased background">
     @inertia
 </body>
 </html>
+
+<style>
+    .background{
+        background: rgb(17,160,154);
+        background: linear-gradient(325deg, rgba(17,160,154,1) 0%, rgba(255,255,255,1) 24%);
+    }
+</style>
