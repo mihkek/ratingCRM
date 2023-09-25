@@ -6,7 +6,8 @@
     <menu-item @onClick="itemClick" link="progress" iconName="flag" label="Достижения" infoMessage="Текст информации о разделе" />
     <menu-item @onClick="itemClick" link="belts" iconName="poias" label="Пояса" infoMessage="Текст информации о разделе" />
     <menu-item @onClick="itemClick" link="ranks" iconName="san" label="Разряды" infoMessage="Текст информации о разделе" />
-    <menu-item @onClick="itemClick" link="ratings" iconName="star" label="РЕЙТИНГИ" infoMessage="Текст информации о разделе" />
+    <!-- <menu-item @onClick="itemClick" link="ratings" iconName="star" label="РЕЙТИНГИ" infoMessage="Текст информации о разделе" /> -->
+    <menu-item-drop @onClick="itemClick" link="" iconName="site" label="На сайт" infoMessage="Текст информации о разделе" />
     <menu-item @onClick="itemClick" link="admin" iconName="razdel" label="Раздел админа" infoMessage="Текст информации о разделе" />
     <menu-item @onClick="itemClick" link="journal" iconName="razdel" label="Раздел наставника" infoMessage="Текст информации о разделе" />
     <menu-item @onClick="itemClick" link="" iconName="site" label="На сайт" infoMessage="Текст информации о разделе" />
@@ -15,6 +16,7 @@
 
 <script>
 import MenuItem from './Menu/MenuItem.vue'
+import MenuItemDrop from './Menu/MenuItemDrop.vue'
 import {Link} from '@inertiajs/inertia-vue3'
 import Icon from '@/Shared/Icon'
 
@@ -22,7 +24,8 @@ export default {
   components: {
     Icon,
     Link,
-    MenuItem
+    MenuItem,
+    MenuItemDrop
   },
   emits: ['menuItemClick'],
   props: {
