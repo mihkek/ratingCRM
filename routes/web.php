@@ -86,19 +86,19 @@ Route::put('students/{user}/restore', [UsersController::class, 'restore'])
 
 /*
 |--------------------------------------------------------------------------
-| Наставники
+| Рейтинг клубов
 |--------------------------------------------------------------------------
 */
-Route::get('mentors', [MentorController::class, 'index'])
-    ->name('mentors')
+Route::get('clubs', [MentorController::class, 'index'])
+    ->name('clubs')
     ->middleware('auth');
 
-Route::get('mentors/create', [MentorController::class, 'create'])
-    ->name('mentors.create')
+Route::get('clubs/create', [MentorController::class, 'create'])
+    ->name('clubs.create')
     ->middleware('auth');
 
-Route::get('mentors/{mentor}/edit', [MentorController::class, 'edit'])
-    ->name('mentors.edit')
+Route::get('clubs/{mentor}/edit', [MentorController::class, 'edit'])
+    ->name('clubs.edit')
     ->middleware('auth');
 
 /*

@@ -2,7 +2,7 @@
   <div>
     <menu-item @onClick="itemClick"  link="students" label="Ученики" infoMessage="Текст информации о разделе" />
     <menu-item @onClick="itemClick" link="achievements"  iconName="list" label="Журнал достижений" infoMessage="Текст информации о разделе" />
-    <menu-item @onClick="itemClick" link="mentors" iconName="ticher" label="Наставники" infoMessage="Текст информации о разделе" />
+    <menu-item @onClick="itemClick" link="mentors" iconName="ticher" label="Рейтинг клубов" infoMessage="Текст информации о разделе" />
     <menu-item @onClick="itemClick" link="progress" iconName="flag" label="Достижения" infoMessage="Текст информации о разделе" />
     <menu-item @onClick="itemClick" link="belts" iconName="poias" label="Пояса" infoMessage="Текст информации о разделе" />
     <menu-item @onClick="itemClick" link="ranks" iconName="san" label="Разряды" infoMessage="Текст информации о разделе" />
