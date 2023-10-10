@@ -2,7 +2,7 @@
   <div>
     <Head :title="`${form.name}`" />
     <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/clubs">Рейтинг клубов</Link>
+      <Link class="text-indigo-400 hover:text-indigo-600" href="/club_rating">Рейтинг клубов</Link>
       <span class="text-indigo-400 font-medium">/</span>
       {{ form.name }}
     </h1>
@@ -62,16 +62,16 @@ export default {
 
   methods: {
     update() {
-      this.form.put(`/clubs/${this.club.id}`)
+      this.form.put(`/club_rating/${this.club.id}`)
     },
     destroy() {
       if (confirm('Вы уверены что хотите удалить Рейтинг ?')) {
-        this.$inertia.delete(`/clubs/${this.club.id}`)
+        this.$inertia.delete(`/club_rating/${this.club.id}`)
       }
     },
     restore() {
       if (confirm('Are you sure you want to restore this contact?')) {
-        this.$inertia.put(`/clubs/${this.club.id}/restore`)
+        this.$inertia.put(`/club_rating/${this.club.id}/restore`)
       }
     },
   },
