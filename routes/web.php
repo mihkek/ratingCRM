@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\AchievementsController;
+use App\Http\Controllers\ClubController;
+use App\Http\Controllers\ClubRatingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\RankController;
+use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\BeltsController;
@@ -83,22 +86,103 @@ Route::put('students/{user}/restore', [UsersController::class, 'restore'])
 
 // Журнал достижений
 
+/*
+|--------------------------------------------------------------------------
+| Клубы
+|--------------------------------------------------------------------------
+*/
+Route::get('clubs', [ClubController::class, 'index'])
+    ->name('clubs')
+    ->middleware('auth');
+
+Route::get('clubs/create', [ClubController::class, 'create'])
+    ->name('clubs.create')
+    ->middleware('auth');
+
+Route::get('clubs/{club}/edit', [ClubController::class, 'edit'])
+    ->name('clubs.edit')
+    ->middleware('auth');
+
+Route::post('clubs', [ClubController::class, 'store'])
+    ->name('clubs.store')
+    ->middleware('auth');
+
+Route::put('clubs/{club}', [ClubController::class, 'update'])
+    ->name('clubs.update')
+    ->middleware('auth');
+
+Route::delete('clubs/{club}', [ClubController::class, 'destroy'])
+    ->name('clubs.destroy')
+    ->middleware('auth');
+
+Route::put('clubs/{club}/restore', [ClubController::class, 'restore'])
+    ->name('clubs.restore')
+    ->middleware('auth');
+/*
+|--------------------------------------------------------------------------
+| Турниры
+|--------------------------------------------------------------------------
+*/
+Route::get('tournaments', [TournamentController::class, 'index'])
+    ->name('tournaments')
+    ->middleware('auth');
+
+Route::get('tournaments/create', [TournamentController::class, 'create'])
+    ->name('tournaments.create')
+    ->middleware('auth');
+
+Route::get('tournaments/{tournament}/edit', [TournamentController::class, 'edit'])
+    ->name('tournaments.edit')
+    ->middleware('auth');
+
+Route::post('tournaments', [TournamentController::class, 'store'])
+    ->name('tournaments.store')
+    ->middleware('auth');
+
+Route::put('tournaments/{tournament}', [TournamentController::class, 'update'])
+    ->name('tournaments.update')
+    ->middleware('auth');
+
+Route::delete('tournaments/{tournament}', [TournamentController::class, 'destroy'])
+    ->name('tournaments.destroy')
+    ->middleware('auth');
+
+Route::put('tournaments/{tournament}/restore', [TournamentController::class, 'restore'])
+    ->name('tournaments.restore')
+    ->middleware('auth');
+
 
 /*
 |--------------------------------------------------------------------------
 | Рейтинг клубов
 |--------------------------------------------------------------------------
 */
-Route::get('clubs', [MentorController::class, 'index'])
-    ->name('clubs')
+Route::get('club_rating', [ClubRatingController::class, 'index'])
+    ->name('club_rating')
     ->middleware('auth');
 
-Route::get('clubs/create', [MentorController::class, 'create'])
-    ->name('clubs.create')
+Route::get('club_rating/create', [ClubRatingController::class, 'create'])
+    ->name('club_rating.create')
     ->middleware('auth');
 
-Route::get('clubs/{mentor}/edit', [MentorController::class, 'edit'])
-    ->name('clubs.edit')
+Route::get('club_rating/{club_rating}/edit', [ClubRatingController::class, 'edit'])
+    ->name('club_rating.edit')
+    ->middleware('auth');
+
+Route::post('club_rating', [ClubRatingController::class, 'store'])
+    ->name('club_rating.store')
+    ->middleware('auth');
+
+Route::put('club_rating/{club_rating}', [ClubRatingController::class, 'update'])
+    ->name('club_rating.update')
+    ->middleware('auth');
+
+Route::delete('club_rating/{club_rating}', [ClubRatingController::class, 'destroy'])
+    ->name('club_rating.destroy')
+    ->middleware('auth');
+
+Route::put('club_rating/{club_rating}/restore', [ClubRatingController::class, 'restore'])
+    ->name('club_rating.restore')
     ->middleware('auth');
 
 /*
