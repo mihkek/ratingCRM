@@ -9,7 +9,7 @@
     <div class="max-w-3xl bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="store">
         <div class="flex flex-wrap -mb-8 -mr-6 p-8">
-          <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full lg:w-1/2" label="Название клуба"/>
+          <text-input v-model="form.name" :error="form.errors.name" class="pb-8 pr-6 w-full lg:w-1/2" label="Название рейтинга клуба"/>
           <text-input v-model="form.first" :error="form.errors.first" class="pb-8 pr-6 w-full lg:w-1/2" label="1 Место"/>
           <text-input v-model="form.second" :error="form.errors.second" class="pb-8 pr-6 w-full lg:w-1/2" label="2 Место"/>
           <text-input v-model="form.third" :error="form.errors.third" class="pb-8 pr-6 w-full lg:w-1/2" label="3 Место"/>
@@ -47,22 +47,14 @@ export default {
     SelectInput,
     TextInput,
   },
+  props: {
+    tournaments: Array,
+    clubs: Array,
+  },
   layout: Layout,
   remember: 'form',
   data() {
     return {
-      tournaments: [
-        {
-          id: 1,
-          name: 'Хреновый турнир',
-        }
-      ],
-      clubs: [
-        {
-          id: 1,
-          name: 'Хреновый клуб',
-        }
-      ],
       form: this.$inertia.form({
         name: '',
         first: '',

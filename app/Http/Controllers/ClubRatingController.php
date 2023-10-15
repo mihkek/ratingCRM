@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClubRating;
+use App\Models\Tournament;
+use App\Models\Club;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,16 +17,19 @@ class ClubRatingController extends Controller
         ]);
     }
 
-    public function edit(ClubRating $club)
+    public function edit(ClubRating $club_rating)
     {
         return Inertia::render('ClubRating/Edit', [
-            'club' => ClubRating::find($club->id)
+            'club' => ClubRating::find($club_rating->id)
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('ClubRating/Create');
+        return Inertia::render('ClubRating/Create', [
+            'tournaments' => Tournament::all(),
+            'clubs' => Club::all(),
+        ]);
     }
 
     public function store(ClubRating $club)

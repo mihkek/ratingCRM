@@ -125,7 +125,7 @@ export default {
   },
   mounted(){
     console.log(this.personalProgress)
-    this.personal_progress = this.personalProgress.link
+    // this.personal_progress = this.personalProgress.link
   },
   methods: {
     savePersonalProgress(){

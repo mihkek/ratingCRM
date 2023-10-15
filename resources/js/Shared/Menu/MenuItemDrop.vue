@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import TreeItem from './TreeItem.vue'
 
 const treeData = ref({
-  name: 'РЕЁТИНГИ',
+  name: 'РЕЙТИНГИ',
   iconName: 'star',
   children: [
     {
