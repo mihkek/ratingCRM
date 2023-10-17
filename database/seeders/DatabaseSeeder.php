@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Админ', 'slug' => 'admin'],
             ['name' => 'Наставник', 'slug' => 'mentor'],
             ['name' => 'Ученик', 'slug' => 'student'],
+            ['name' => 'Тренер', 'slug' => 'trainer']
         ];
 
         foreach ($roles as $role) {

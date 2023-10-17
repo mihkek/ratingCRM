@@ -49,6 +49,7 @@
           <th class="pb-4 pt-6 px-6">Пояс</th>
           <th class="pb-4 pt-6 px-6">Разряд</th>
           <th class="pb-4 pt-6 px-6">Наставник</th>
+          <th class="pb-4 pt-6 px-6">Тренер</th>
         </tr>
         <tr v-for="student in students.data" :key="student.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
@@ -71,6 +72,11 @@
           <td class="border-t">
             <Link class="flex items-center px-6 py-4" :href="`contacts/1/view`" tabindex="-1">
               {{ student.mentor }}
+            </Link>
+          </td>
+          <td class="border-t">
+            <Link class="flex items-center px-6 py-4" :href="`contacts/1/view`" tabindex="-1">
+              {{ student.trainer }}
             </Link>
           </td>
           <td class="w-px border-t">

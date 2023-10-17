@@ -26,7 +26,10 @@ class StudentsController extends Controller
 
     public function create()
     {
-        return Inertia::render('Students/Create');
+        return Inertia::render('Students/Create', [
+            'mentors' => User::where('role_id', 2)->get(),
+            'trainers' => User::where('role_id', 4)->get(),
+        ]);
     }
 
     public function exportExcel()
@@ -35,25 +38,25 @@ class StudentsController extends Controller
     }
     public function store()
     {
-        // Request::validate([
-        //     'first_name' => ['required', 'max:50'],
-        //     'last_name' => ['required', 'max:50'],
-        //     'email' => ['required', 'max:50', 'email', Rule::unique('users')],
-        //     'password' => ['nullable'],
-        //     'owner' => ['required', 'boolean'],
-        //     'photo' => ['nullable', 'image'],
-        // ]);
+         Request::validate([
+             'first_name' => ['required', 'max:50'],
+             'last_name' => ['required', 'max:50'],
+             'email' => ['required', 'max:50', 'email', Rule::unique('users')],
+             'password' => ['nullable'],
+             'mentor' => ['nullable'],
+             'trainer' => ['nullable'],
+         ]);
 
-        // Auth::user()->account->users()->create([
-        //     'first_name' => Request::get('first_name'),
-        //     'last_name' => Request::get('last_name'),
-        //     'surname' => Request::get('last_name'),
-        //     'email' => Request::get('email'),
-        //     'password' => Request::get('password'),
-        //     'owner' => Request::get('owner'),
-        //     'role_id' => 3,
-        //     'photo_path' => Request::file('photo') ? Request::file('photo')->store('users') : null,
-        // ]);
+         Auth::user()->account->users()->create([
+             'first_name' => Request::get('first_name'),
+             'last_name' => Request::get('last_name'),
+             'email' => Request::get('email'),
+             'password' => Request::get('password'),
+             'role_id' => 3,
+             'mentor' => Request::get('mentor'),
+             'trainer' => Request::get('trainer'),
+             // 'photo_path' => Request::file('photo') ? Request::file('photo')->store('users') : null,
+         ]);
 
         return Redirect::route('students')->with('success', 'Ученик успешно создан.');
     }

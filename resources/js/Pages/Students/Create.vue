@@ -12,11 +12,13 @@
           <text-input v-model="form.last_name" :error="form.errors.last_name" class="pb-8 pr-6 w-full lg:w-1/2" label="Фамилия" />
           <text-input v-model="form.email" :error="form.errors.email" class="pb-8 pr-6 w-full lg:w-1/2" label="Email" />
           <text-input v-model="form.password" :error="form.errors.password" class="pb-8 pr-6 w-full lg:w-1/2" type="password" autocomplete="new-password" label="Пароль" />
-          <select-input v-model="form.owner" :error="form.errors.owner" class="pb-8 pr-6 w-full lg:w-1/2" label="Владелец">
-            <option :value="true">Да</option>
-            <option :value="false">Нет</option>
+          <select-input v-model="form.mentor" :error="form.errors.mentor" class="pb-8 pr-6 w-full lg:w-1/2" label="Наставник">
+            <option v-for="mentor in mentors" :key="mentor.id" :value="mentor.id">{{ getFullName(mentor) }}</option>
           </select-input>
-          <file-input v-model="form.photo" :error="form.errors.photo" class="pb-8 pr-6 w-full lg:w-1/2" type="file" accept="image/*" label="Фото" />
+          <select-input v-model="form.trainer" :error="form.errors.trainer" class="pb-8 pr-6 w-full lg:w-1/2" label="Тренер">
+            <option v-for="trainer in trainers" :key="trainer.id" :value="trainer.id">{{ getFullName(trainer) }}</option>
+          </select-input>
+          <!--<file-input v-model="form.photo" :error="form.errors.photo" class="pb-8 pr-6 w-full lg:w-1/2" type="file" accept="image/*" label="Фото" />-->
         </div>
         <div class="flex items-center justify-end px-8 py-4 bg-gray-50 border-t border-gray-100">
           <loading-button :loading="form.processing" class="btn-indigo" type="submit">Создать ученика</loading-button>
@@ -43,6 +45,10 @@ export default {
     SelectInput,
     TextInput,
   },
+  props: {
+    mentors: Array,
+    trainers: Array,
+  },
   layout: Layout,
   remember: 'form',
   data() {
@@ -54,6 +60,8 @@ export default {
         password: '',
         owner: false,
         photo: null,
+        mentor: null,
+        trainer: null
       }),
     }
   },
@@ -61,6 +69,9 @@ export default {
     store() {
       this.form.post('/students')
     },
+    getFullName($user){
+      return $user.first_name + ' ' + $user.last_name + ' ' + $user.surname
+    }
   },
 }
 </script>

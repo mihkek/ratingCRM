@@ -22,6 +22,7 @@ class StudenrsResource extends JsonResource
             "belt" => 'Черный 1 разряд',
             "progress" => 'Второй',
             "mentor" => 'Владислав Павел Юрьевич',
+            "trainer" => 'Петрович Андрей Сергеевич',
         ];
     }
 }
