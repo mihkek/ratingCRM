@@ -1,3 +1,9 @@
+<template>
+  <ul class="mb-4 flex no-wrap items-center">
+    <TreeItem class="item" :model="treeData"></TreeItem>
+  </ul>
+</template>
+
 <script setup>
 import { ref } from 'vue'
 import TreeItem from './TreeItem.vue'
@@ -58,8 +64,4 @@ const treeData = ref({
 })
 </script>
 
-<template>
-  <ul class="mb-4 flex no-wrap items-center">
-    <TreeItem class="item" :model="treeData"></TreeItem>
-  </ul>
-</template>
+

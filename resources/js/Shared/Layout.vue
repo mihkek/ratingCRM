@@ -4,8 +4,8 @@
     <div class="md:flex md:flex-col">
       <div class="md:flex md:flex-col md:h-screen">
         <div class="flex md:flex-shrink-0 relative">
-          <NotificationsBell class="absolute top-4  right-24 md:right-44" style="top: 25px; "/>
-          <!-- <NotificationsBell class="md:hidden absolute top-4" style="top: 25px; right: 85px;"/> -->
+           <NotificationsBell :auth="auth.user.notification" class="absolute top-4 right-24 md:right-44" style="top: 25px;"/>
+         <!-- <NotificationsBell class="md:hidden absolute top-4" style="top: 25px; right: 85px;"/> -->
           <div class="flex items-center justify-between px-6 py-4 bg-white md:flex-shrink-0 md:justify-center md:w-56">
             <div class="flex" href="/">
               <BurderButton class="block md:hidden" @click="burderOpened = !burderOpened" />
@@ -58,6 +58,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -69,7 +70,7 @@ import Dropdown from '@/Shared/Dropdown'
 import MainMenu from '@/Shared/MainMenu'
 import FlashMessages from '@/Shared/FlashMessages'
 import BurderButton from './BurderButton.vue'
-import 'vue3-toastify/dist/index.css';
+import 'vue3-toastify/dist/index.css'
 import NotificationsBell from './Notifications/NotificationsBell.vue'
 
 export default {
@@ -88,7 +89,20 @@ export default {
   },
   data(){
     return {
-      burderOpened: false
+      burderOpened: false,
+    }
+  },
+  // computed: {
+  //   hasUnreadNotitfication(){
+  //   if( (Object.keys((this.auth.user.notification).length === 0)))
+  //   return false
+  //   }
+   
+  // },
+
+  methods: {
+    markNotitficationsRead(){
+      this.auth.user.notification.forEach(item => item.status = 0)
     }
   }
 }

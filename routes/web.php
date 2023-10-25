@@ -16,6 +16,9 @@ use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RatingsController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\DirectionController;
+use App\Http\Controllers\SheduleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -82,6 +85,68 @@ Route::delete('students/{user}', [UsersController::class, 'destroy'])
 Route::put('students/{user}/restore', [UsersController::class, 'restore'])
     ->name('students.restore')
     ->middleware('auth');
+
+/*
+|--------------------------------------------------------------------------
+| Расписание
+|--------------------------------------------------------------------------
+*/
+
+Route::get('schedules', [SheduleController::class, 'index'])
+->name('schedules')
+->middleware('auth');
+
+Route::get('schedules/create', [SheduleController::class, 'create'])
+->name('schedules.create')
+->middleware('auth');
+
+Route::post('schedules', [SheduleController::class, 'store'])
+->name('schedules.store')
+->middleware('auth');
+
+Route::get('schedules/{schedule}/edit', [SheduleController::class, 'edit'])
+->name('schedules.edit')
+->middleware('auth');
+
+Route::put('schedules/{schedule}', [SheduleController::class, 'update'])
+->name('schedules.update')
+->middleware('auth');
+
+Route::delete('schedules/{schedule}', [SheduleController::class, 'destroy'])
+->name('schedules.destroy')
+->middleware('auth');
+
+
+/*
+|--------------------------------------------------------------------------
+| Направления
+|--------------------------------------------------------------------------
+*/
+
+Route::get('directions', [DirectionController::class, 'index'])
+    ->name('directions')
+    ->middleware('auth');
+
+Route::get('directions/create', [DirectionController::class, 'create'])
+    ->name('directions.create')
+    ->middleware('auth');
+
+Route::post('directions', [DirectionController::class, 'store'])
+    ->name('directions.store')
+    ->middleware('auth');
+
+Route::get('directions/{direction}/edit', [DirectionController::class, 'edit'])
+    ->name('directions.edit')
+    ->middleware('auth');
+
+Route::put('directions/{direction}', [DirectionController::class, 'update'])
+    ->name('directions.update')
+    ->middleware('auth');
+
+Route::delete('directions/{direction}', [DirectionController::class, 'destroy'])
+    ->name('directions.destroy')
+    ->middleware('auth');
+
 
 
 // Журнал достижений
@@ -276,7 +341,11 @@ Route::get('journal-excel', [JournalController::class, 'exportExcel'])
     ->middleware('auth');
 
 Route::get('journal/create', [JournalController::class, 'create'])
-    ->name('admin.create')
+    ->name('journal.create')
+    ->middleware('auth');
+
+Route::post('journal/store', [JournalController::class, 'store'])
+    ->name('journal.store')
     ->middleware('auth');
 
 Route::get('journal/{category}/edit', [JournalController::class, 'edit'])
@@ -327,3 +396,9 @@ Route::put('achievements/{achievement}/restore', [AchievementsController::class,
 Route::get('/img/{path}', [ImagesController::class, 'show'])
     ->where('path', '.*')
     ->name('image');
+
+//Notification
+
+Route::put('notifications/{notification}', [NotificationController::class, 'update'])
+    ->name('notifications.update')
+    ->middleware('auth');

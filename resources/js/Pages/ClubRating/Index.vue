@@ -3,7 +3,7 @@
     <Head title="Рейтинг клубов"/>
     <h1 class="mb-8 text-3xl font-bold">Рейтинг клубов</h1>
 
-    <div class="grid  place-items-end mb-2">
+    <div  v-if="auth.user.role.name === 'Админ'" class="grid  place-items-end mb-2">
       <Link class="btn-indigo" href="/club_rating/create">
         <span>Добавить</span>
         <span class="hidden md:inline">&nbsp;Рейтинг</span>
@@ -72,6 +72,7 @@ export default {
   layout: Layout,
   props: {
     clubs: Object,
+    auth: Object,
   },
 
   methods: {

@@ -32,16 +32,19 @@
           <option value="only">4 разряд</option>
         </select>
       </search-filter>
-      <div class="flex gap-3">
-        <div @click="exportExcel" class="btn-indigo cursor-pointer" href="/students-excel">
-          <span>Экспорт в Excel</span>
-        </div>
-        <Link class="btn-indigo" href="/students/create">
-          <span>Создать</span>
-          <span class="hidden md:inline">&nbsp;Ученика</span>
-        </Link>
-      </div>
     </div>
+
+    <div class="flex items-center justify-between mb-6">
+      <Link @click="exportExcel" class="btn-indigo">
+        <span>Экспорт</span>
+        <span class="hidden md:inline">&nbsp;в Excel</span>
+      </Link>
+      <Link class="btn-indigo" href="/students/create">
+        <span>Создать</span>
+        <span class="hidden md:inline">&nbsp;Ученика</span>
+      </Link>
+    </div>
+
     <div class="bg-white rounded-md shadow overflow-x-auto">
       <table class="w-full whitespace-nowrap">
         <tr class="text-left font-bold">
@@ -53,34 +56,34 @@
         </tr>
         <tr v-for="student in students.data" :key="student.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
-            <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`contacts/1/view`">
+            <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`students/${student.id}/view`">
               <img v-if="student.photo" class="block -my-2 mr-2 w-5 h-5 rounded-full" :src="student.photo" />
               {{ student.first_name }} {{ student.last_name }} {{ student.surname }}
               <icon v-if="student.deleted_at" name="trash" class="flex-shrink-0 ml-2 w-3 h-3 fill-gray-400" />
             </Link>
           </td>
           <td class="border-t">
-            <Link class="flex items-center px-6 py-4" :href="`contacts/1/view`" tabindex="-1">
+            <Link class="flex items-center px-6 py-4" :href="`students/${student.id}/view`" tabindex="-1">
               {{ student.belt }}
             </Link>
           </td>
           <td class="border-t">
-            <Link class="flex items-center px-6 py-4" :href="`contacts/1/view`" tabindex="-1">
+            <Link class="flex items-center px-6 py-4" :href="`students/${student.id}/view`" tabindex="-1">
               {{ student.progress }}
             </Link>
           </td>
           <td class="border-t">
-            <Link class="flex items-center px-6 py-4" :href="`contacts/1/view`" tabindex="-1">
+            <Link class="flex items-center px-6 py-4" :href="`students/${student.id}/view`" tabindex="-1">
               {{ student.mentor }}
             </Link>
           </td>
           <td class="border-t">
-            <Link class="flex items-center px-6 py-4" :href="`contacts/1/view`" tabindex="-1">
+            <Link class="flex items-center px-6 py-4" :href="`students/${student.id}/view`" tabindex="-1">
               {{ student.trainer }}
             </Link>
           </td>
           <td class="w-px border-t">
-            <Link class="flex items-center px-4" :href="`contacts/1/view`" tabindex="-1">
+            <Link class="flex items-center px-4" :href="`students/${student.id}/view`" tabindex="-1">
               Достижения<icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
             </Link>
           </td>

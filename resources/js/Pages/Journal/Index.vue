@@ -33,10 +33,28 @@
           <option value="only">4 разряд</option>
         </select>
       </search-filter>
-      <div @click="exportExcel" class="btn-indigo cursor-pointer" href="/students-excel">
-          <span>Экспорт в Excel</span>
-        </div>
+<!--      <div @click="exportExcel" class="btn-indigo cursor-pointer" href="/students-excel">-->
+<!--          <span>Экспорт в Excel</span>-->
+<!--      </div>-->
+<!--      <div class="grid  place-items-end mb-2">-->
+<!--        <Link class="btn-indigo" href="/journal/create">-->
+<!--          <span>Добавить</span>-->
+<!--          <span class="hidden md:inline">&nbsp;запись</span>-->
+<!--        </Link>-->
+<!--      </div>-->
     </div>
+
+    <div class="flex items-center justify-between mb-6">
+      <Link @click="exportExcel" class="btn-indigo">
+        <span>Экспорт</span>
+        <span class="hidden md:inline">&nbsp;в Excel</span>
+      </Link>
+      <Link class="btn-indigo" href="/journal/create">
+        <span>Создать</span>
+        <span class="hidden md:inline">&nbsp;Достижение</span>
+      </Link>
+    </div>
+
     <div class="bg-white rounded-md shadow overflow-x-auto">
       <table class="w-full whitespace-nowrap">
         <tr class="text-left font-bold">

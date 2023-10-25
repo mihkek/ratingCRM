@@ -17,11 +17,12 @@
       <template #dropdown>
         <div class="max-h-96 overflow-y-auto bg-indigo-800 ">
           <NotificationCard
-            v-for="(item, index) in notifications"
+            v-for="(item, index) in auth"
+            :id="item.id"
             :key="index"
             :title="item.title"
             :message="item.message"
-            :link="item.link"
+            :status="item.status"
           />
         </div>
       </template>
@@ -39,42 +40,22 @@ export default {
     Dropdown,
     NotificationCard
   },
+  props: {
+    auth: Object,
+  },
   data(){
-    return {
-      notifications: [
-        {
-          id: 1,
-          title: 'Загловок',
-          message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
-          link: '/students',
-          read: false,
-        },
-        {
-          id: 2,
-          title: 'Загловок',
-          message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
-          link: '/students',
-          read: true,
-        },
-        {
-          id: 3,
-          title: 'Загловок',
-          message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
-          link: '/students',
-          read: true,
-        },
-      ]
-    }
+    return { hasUnreadNotitfication: true }
   },
   computed: {
-    hasUnreadNotitfication(){
-      return this.notifications.filter(item => item.read == false).length > 0
+    hasUnreadNotitficatio(){
+      return this.auth.user.notification.filter(item => item.status == 1)
+      // return true
     }
   },
-  methods: {
-    markNotitficationsRead(){
-      this.notifications.forEach(item => item.read = true)
-    }
-  }
+  // methods: {
+  //   // markNotitficationsRead(){this.auth.user.notification.forEach(item => item.status = 0)}
+  //   markNotitficationsRead(){ this.hasUnreadNotitfication = false}
+  // }
+
 }
 </script>

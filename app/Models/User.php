@@ -13,6 +13,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -48,6 +49,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+     public function notification()
+{
+    return $this->belongsToMany(Notification::class);
+}
 
     public function getFio()
     {

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Constants\TestDataGenerators\JournalUsersTestData;
 use App\Exports\ExportJornal;
 use App\Models\Jornal;
+use App\Models\JornalUser;
 use App\Models\User;
+use App\Services\OpenSignalService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -35,7 +37,10 @@ class JournalController extends Controller
 
     public function create()
     {
-        return Inertia::render('Users/Create');
+        return Inertia::render('Journal/Create',[
+            'mentors' => User::where('role_id', 2)->get(),
+            'students' => User::where('role_id', 3)->get(),
+        ]);
     }
     public function exportExcel()
     {
@@ -48,27 +53,25 @@ class JournalController extends Controller
             return response()->status(403);
         }
     }
-    public function store()
+    public function store(Request $request, Jornal $jornal)
     {
-        // Request::validate([
-        //     'first_name' => ['required', 'max:50'],
-        //     'last_name' => ['required', 'max:50'],
-        //     'email' => ['required', 'max:50', 'email', Rule::unique('users')],
-        //     'password' => ['nullable'],
-        //     'owner' => ['required', 'boolean'],
-        //     'photo' => ['nullable', 'image'],
-        // ]);
+        $route_points = [1,2];
 
-        // Auth::user()->account->users()->create([
-        //     'first_name' => Request::get('first_name'),
-        //     'last_name' => Request::get('last_name'),
-        //     'email' => Request::get('email'),
-        //     'password' => Request::get('password'),
-        //     'owner' => Request::get('owner'),
-        //     'photo_path' => Request::file('photo') ? Request::file('photo')->store('users') : null,
-        // ]);
+         $lastAdded = $jornal->create(
+            Request::validate([
+                'mentor_id' => ['required', 'max:50'],
+                'date' => ['required', 'max:50'],
+                'description' => ['required', 'max:50']
+            ])
+        );
 
-        return Redirect::route('users')->with('success', 'Ученик успешно создан.');
+        $jornal = Jornal::find($lastAdded->id);
+        $jornal->user()->attach($route_points);
+
+        //  foreach ($route_points as $students) {
+        //     $jornal->user()->attach($students['id']);
+        //   }
+             return Redirect::route('admin')->with('success', 'Достижение успешно создано.');
     }
 
     public function edit(User $user)

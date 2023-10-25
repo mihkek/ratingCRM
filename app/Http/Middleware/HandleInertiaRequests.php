@@ -46,6 +46,7 @@ class HandleInertiaRequests extends Middleware
                         'email' => $request->user()->email,
                         'owner' => $request->user()->owner,
                         'role' => $request->user()->role,
+                        'notification' => $request->user()->notification,
                     ] : null,
                 ];
             },
