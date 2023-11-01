@@ -94,6 +94,35 @@ INSERT INTO `belts` VALUES (1,'Белый (0 кю)',NULL,NULL),(2,'Желтый 
 UNLOCK TABLES;
 
 --
+-- Table structure for table `branches`
+--
+
+DROP TABLE IF EXISTS `branches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `branches` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `adress` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `geolocation` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `branches`
+--
+
+LOCK TABLES `branches` WRITE;
+/*!40000 ALTER TABLE `branches` DISABLE KEYS */;
+INSERT INTO `branches` VALUES (1,'Первый',NULL,NULL,NULL,'2023-10-26 21:38:33','2023-10-26 21:38:33');
+/*!40000 ALTER TABLE `branches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categorylists`
 --
 
@@ -223,7 +252,7 @@ DROP TABLE IF EXISTS `directions`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `directions` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -270,6 +299,58 @@ LOCK TABLES `failed_jobs` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `groups`
+--
+
+DROP TABLE IF EXISTS `groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `groups` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `groups`
+--
+
+LOCK TABLES `groups` WRITE;
+/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
+INSERT INTO `groups` VALUES (1,'Группа 1',NULL,NULL),(2,'Группа 2',NULL,NULL),(3,'Группа 3',NULL,NULL);
+/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `halls`
+--
+
+DROP TABLE IF EXISTS `halls`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `halls` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `branch_id` bigint unsigned DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `halls`
+--
+
+LOCK TABLES `halls` WRITE;
+/*!40000 ALTER TABLE `halls` DISABLE KEYS */;
+/*!40000 ALTER TABLE `halls` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `jornal_user`
 --
 
@@ -291,6 +372,32 @@ CREATE TABLE `jornal_user` (
 LOCK TABLES `jornal_user` WRITE;
 /*!40000 ALTER TABLE `jornal_user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `jornal_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jornal_users`
+--
+
+DROP TABLE IF EXISTS `jornal_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jornal_users` (
+  `jornal_id` bigint unsigned NOT NULL,
+  `user_id` int unsigned NOT NULL,
+  KEY `jornal_users_jornal_id_foreign` (`jornal_id`),
+  KEY `jornal_users_user_id_foreign` (`user_id`),
+  CONSTRAINT `jornal_users_jornal_id_foreign` FOREIGN KEY (`jornal_id`) REFERENCES `jornals` (`id`),
+  CONSTRAINT `jornal_users_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jornal_users`
+--
+
+LOCK TABLES `jornal_users` WRITE;
+/*!40000 ALTER TABLE `jornal_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jornal_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -633,6 +740,33 @@ INSERT INTO `roles` VALUES (1,'Админ','admin','2023-09-24 06:42:44','2023-0
 UNLOCK TABLES;
 
 --
+-- Table structure for table `shedules`
+--
+
+DROP TABLE IF EXISTS `shedules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `shedules` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cancel_shedule` tinyint(1) NOT NULL DEFAULT '0',
+  `status_shedule` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shedules`
+--
+
+LOCK TABLES `shedules` WRITE;
+/*!40000 ALTER TABLE `shedules` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shedules` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tournaments`
 --
 
@@ -687,9 +821,10 @@ CREATE TABLE `users` (
   `group_id` bigint unsigned DEFAULT NULL,
   `activity_date` date DEFAULT NULL,
   `activity_time` time DEFAULT NULL,
-  `data` json DEFAULT NULL,
+  `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
+  UNIQUE KEY `users_email_unique` (`email`),
+  CONSTRAINT `users_chk_1` CHECK (json_valid(`data`))
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -699,7 +834,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Оводков','Андрей','Юрьевич','ovod@example.com','2023-09-24 06:42:44','$2y$10$m4By779zElLoTIoTv4WjqOjsz3hEmJEAUY4MqqpAkjyMSTX9WtBce',1,NULL,2,'78fCkIRxhZ','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Марченко','Алексей','Валентинович','vlad@example.com','2023-09-24 06:42:44','$2y$10$o/j8tithKecyn4EmCstuEe//S6kBuTA5mpFpLQIBxGrcZs.rEpQfy',1,NULL,3,'UyT9NGd43U','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'Костин','Сергей','Владиславович','johndoe@example.com','2023-09-24 06:42:44','$2y$10$HmrjmfUgQ.BjDc4nIgue2O6kfMz2pPrBZsibqnRB36AaLnM9ZyqFu',1,NULL,1,'QHijh1NCt050UgipMbJz5Kbl2xw0ykoVdiXGhLqYq5Z1GOziqeUCVQE8GGe8','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'1','1','1231313','1@mail.ru',NULL,'$2y$10$W8MnKnZnpg/i8OZuQ7FqJO.mqUTpB5m/2zVobnznyrYVPBPb1wkyS',0,NULL,3,NULL,'2023-10-24 04:18:53','2023-10-24 04:18:53',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'Оводков','Андрей','Юрьевич','ovod@example.com','2023-09-24 06:42:44','$2y$10$m4By779zElLoTIoTv4WjqOjsz3hEmJEAUY4MqqpAkjyMSTX9WtBce',1,NULL,2,'78fCkIRxhZ','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,1,'2023-09-24','10:00:00',NULL),(2,'Марченко','Алексей','Валентинович','vlad@example.com','2023-09-24 06:42:44','$2y$10$o/j8tithKecyn4EmCstuEe//S6kBuTA5mpFpLQIBxGrcZs.rEpQfy',1,NULL,3,'UyT9NGd43U','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,1,'2023-09-24','10:00:00',NULL),(3,'Костин','Сергей','Владиславович','johndoe@example.com','2023-09-24 06:42:44','$2y$10$HmrjmfUgQ.BjDc4nIgue2O6kfMz2pPrBZsibqnRB36AaLnM9ZyqFu',1,NULL,1,'QHijh1NCt050UgipMbJz5Kbl2xw0ykoVdiXGhLqYq5Z1GOziqeUCVQE8GGe8','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,1,'2023-09-24','10:00:00',NULL),(5,'student','1','1231313','1@mail.ru',NULL,'$2y$10$W8MnKnZnpg/i8OZuQ7FqJO.mqUTpB5m/2zVobnznyrYVPBPb1wkyS',0,NULL,3,NULL,'2023-10-24 04:18:53','2023-10-24 04:18:53',NULL,NULL,NULL,NULL,1,'2023-09-24','10:00:00',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -712,4 +847,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-25  0:33:27
+-- Dump completed on 2023-10-30  1:09:13

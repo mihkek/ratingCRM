@@ -94,6 +94,35 @@ INSERT INTO `belts` VALUES (1,'Белый (0 кю)',NULL,NULL),(2,'Желтый 
 UNLOCK TABLES;
 
 --
+-- Table structure for table `branches`
+--
+
+DROP TABLE IF EXISTS `branches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `branches` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `adress` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `geolocation` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `branches`
+--
+
+LOCK TABLES `branches` WRITE;
+/*!40000 ALTER TABLE `branches` DISABLE KEYS */;
+INSERT INTO `branches` VALUES (4,'Первый филиал','111','222','333','2023-10-25 11:33:46','2023-10-25 11:33:46');
+/*!40000 ALTER TABLE `branches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categorylists`
 --
 
@@ -136,7 +165,7 @@ CREATE TABLE `club_ratings` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +174,7 @@ CREATE TABLE `club_ratings` (
 
 LOCK TABLES `club_ratings` WRITE;
 /*!40000 ALTER TABLE `club_ratings` DISABLE KEYS */;
-INSERT INTO `club_ratings` VALUES (1,'Зенит',21,14,8,46,'2023-10-10 10:01:50','2023-10-10 10:01:50'),(2,'Краснодар',16,12,7,40,'2023-10-10 10:01:50','2023-10-10 10:01:50'),(3,'Ростов',14,10,6,35,'2023-10-10 10:01:50','2023-10-10 10:01:50'),(4,'Локомотив',10,8,4,30,'2023-10-10 10:01:50','2023-10-10 10:01:50');
+INSERT INTO `club_ratings` VALUES (1,'Зенит',21,14,8,46,'2023-10-10 10:01:50','2023-10-10 10:01:50'),(2,'Краснодар',16,12,7,40,'2023-10-10 10:01:50','2023-10-10 10:01:50'),(3,'Ростов',14,10,6,35,'2023-10-10 10:01:50','2023-10-10 10:01:50'),(4,'Локомотив',10,8,4,30,'2023-10-10 10:01:50','2023-10-10 10:01:50'),(5,'Рейтинг 1',10,11,12,50,'2023-10-25 10:21:04','2023-10-25 10:21:04');
 /*!40000 ALTER TABLE `club_ratings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +191,7 @@ CREATE TABLE `clubs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +200,7 @@ CREATE TABLE `clubs` (
 
 LOCK TABLES `clubs` WRITE;
 /*!40000 ALTER TABLE `clubs` DISABLE KEYS */;
-INSERT INTO `clubs` VALUES (1,'Легион','2023-10-13 10:49:27','2023-10-13 10:49:27');
+INSERT INTO `clubs` VALUES (2,'Легенда','2023-10-25 11:46:29','2023-10-25 11:46:29');
 /*!40000 ALTER TABLE `clubs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,11 +252,11 @@ DROP TABLE IF EXISTS `directions`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `directions` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -236,7 +265,7 @@ CREATE TABLE `directions` (
 
 LOCK TABLES `directions` WRITE;
 /*!40000 ALTER TABLE `directions` DISABLE KEYS */;
-INSERT INTO `directions` VALUES (1,'Каратэ','2023-10-24 03:53:04','2023-10-24 05:01:59'),(2,'Танцы','2023-10-24 05:02:13','2023-10-24 05:02:13');
+INSERT INTO `directions` VALUES (1,'Каратэ','2023-10-24 03:53:04','2023-10-25 14:02:21');
 /*!40000 ALTER TABLE `directions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,6 +299,32 @@ LOCK TABLES `failed_jobs` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `halls`
+--
+
+DROP TABLE IF EXISTS `halls`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `halls` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `branch_id` bigint unsigned DEFAULT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `halls`
+--
+
+LOCK TABLES `halls` WRITE;
+/*!40000 ALTER TABLE `halls` DISABLE KEYS */;
+/*!40000 ALTER TABLE `halls` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `jornal_user`
 --
 
@@ -290,7 +345,34 @@ CREATE TABLE `jornal_user` (
 
 LOCK TABLES `jornal_user` WRITE;
 /*!40000 ALTER TABLE `jornal_user` DISABLE KEYS */;
+INSERT INTO `jornal_user` VALUES (7,1),(7,2);
 /*!40000 ALTER TABLE `jornal_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jornal_users`
+--
+
+DROP TABLE IF EXISTS `jornal_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jornal_users` (
+  `jornal_id` bigint unsigned NOT NULL,
+  `user_id` int unsigned NOT NULL,
+  KEY `jornal_users_jornal_id_foreign` (`jornal_id`),
+  KEY `jornal_users_user_id_foreign` (`user_id`),
+  CONSTRAINT `jornal_users_jornal_id_foreign` FOREIGN KEY (`jornal_id`) REFERENCES `jornals` (`id`),
+  CONSTRAINT `jornal_users_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jornal_users`
+--
+
+LOCK TABLES `jornal_users` WRITE;
+/*!40000 ALTER TABLE `jornal_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jornal_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -308,7 +390,7 @@ CREATE TABLE `jornals` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -317,7 +399,7 @@ CREATE TABLE `jornals` (
 
 LOCK TABLES `jornals` WRITE;
 /*!40000 ALTER TABLE `jornals` DISABLE KEYS */;
-INSERT INTO `jornals` VALUES (1,1,'2023-06-20','•Тимур, Артем. Разминка, растяжка. Основная часть: 6 концовок по 20 сек, свободная работа руками в лапу, свободная работа удары ногами в лапу. Отработка ударов ногами по голове. Набивка в виде боя - 2 раза. ОФП: канат, ролик, берпи, приседания. Помощники: Крачковская, Черноситов.',NULL,NULL),(2,1,'2023-09-13','Бурцев Кирилл,Белан Саша,Белашев Стас,Григорян Давид,Мамитов Артур. Разминка,растяжка,техника,повторение ката и пинана,работа в паре (прямой + шито + Лоу кик),набивка',NULL,NULL),(3,1,'2023-01-20','•Тимур, Ярослав, Артем. Разминка: прыжки на степах, канат + пресс на ролике, бег эстафета, борьба. Основная часть: отработка лоу киков на каждую ногу, отработка защиты и уходы от лоу киков, проработка лоу кика с переводом на голову мая гери. Свободный раунд отработки ударов на голову, отработка защиты от ударов на голову. Между заданиями ОФП. Набивка. Помощники: Крачковская, Черноситов',NULL,NULL);
+INSERT INTO `jornals` VALUES (1,1,'2023-06-20','•Тимур, Артем. Разминка, растяжка. Основная часть: 6 концовок по 20 сек, свободная работа руками в лапу, свободная работа удары ногами в лапу. Отработка ударов ногами по голове. Набивка в виде боя - 2 раза. ОФП: канат, ролик, берпи, приседания. Помощники: Крачковская, Черноситов.',NULL,NULL),(2,1,'2023-09-13','Бурцев Кирилл,Белан Саша,Белашев Стас,Григорян Давид,Мамитов Артур. Разминка,растяжка,техника,повторение ката и пинана,работа в паре (прямой + шито + Лоу кик),набивка',NULL,NULL),(3,1,'2023-01-20','•Тимур, Ярослав, Артем. Разминка: прыжки на степах, канат + пресс на ролике, бег эстафета, борьба. Основная часть: отработка лоу киков на каждую ногу, отработка защиты и уходы от лоу киков, проработка лоу кика с переводом на голову мая гери. Свободный раунд отработки ударов на голову, отработка защиты от ударов на голову. Между заданиями ОФП. Набивка. Помощники: Крачковская, Черноситов',NULL,NULL),(7,1,'2023-10-25','Кратко','2023-10-25 11:36:43','2023-10-25 11:36:43');
 /*!40000 ALTER TABLE `jornals` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -633,6 +715,33 @@ INSERT INTO `roles` VALUES (1,'Админ','admin','2023-09-24 06:42:44','2023-0
 UNLOCK TABLES;
 
 --
+-- Table structure for table `shedules`
+--
+
+DROP TABLE IF EXISTS `shedules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `shedules` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cancel_shedule` tinyint(1) NOT NULL DEFAULT '0',
+  `status_shedule` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shedules`
+--
+
+LOCK TABLES `shedules` WRITE;
+/*!40000 ALTER TABLE `shedules` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shedules` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tournaments`
 --
 
@@ -655,7 +764,7 @@ CREATE TABLE `tournaments` (
 
 LOCK TABLES `tournaments` WRITE;
 /*!40000 ALTER TABLE `tournaments` DISABLE KEYS */;
-INSERT INTO `tournaments` VALUES (1,'Начинающие','2023-10-16','2023-10-13 10:49:49','2023-10-13 10:49:49');
+INSERT INTO `tournaments` VALUES (1,'Начинающие1','2023-10-26','2023-10-13 10:49:49','2023-10-25 11:24:26');
 /*!40000 ALTER TABLE `tournaments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -684,9 +793,6 @@ CREATE TABLE `users` (
   `mentor_id` bigint unsigned DEFAULT NULL,
   `trainer_id` bigint unsigned DEFAULT NULL,
   `direction_id` bigint unsigned DEFAULT NULL,
-  `group_id` bigint unsigned DEFAULT NULL,
-  `activity_date` date DEFAULT NULL,
-  `activity_time` time DEFAULT NULL,
   `data` json DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
@@ -699,7 +805,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Оводков','Андрей','Юрьевич','ovod@example.com','2023-09-24 06:42:44','$2y$10$m4By779zElLoTIoTv4WjqOjsz3hEmJEAUY4MqqpAkjyMSTX9WtBce',1,NULL,2,'78fCkIRxhZ','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Марченко','Алексей','Валентинович','vlad@example.com','2023-09-24 06:42:44','$2y$10$o/j8tithKecyn4EmCstuEe//S6kBuTA5mpFpLQIBxGrcZs.rEpQfy',1,NULL,3,'UyT9NGd43U','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'Костин','Сергей','Владиславович','johndoe@example.com','2023-09-24 06:42:44','$2y$10$HmrjmfUgQ.BjDc4nIgue2O6kfMz2pPrBZsibqnRB36AaLnM9ZyqFu',1,NULL,1,'QHijh1NCt050UgipMbJz5Kbl2xw0ykoVdiXGhLqYq5Z1GOziqeUCVQE8GGe8','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'1','1','1231313','1@mail.ru',NULL,'$2y$10$W8MnKnZnpg/i8OZuQ7FqJO.mqUTpB5m/2zVobnznyrYVPBPb1wkyS',0,NULL,3,NULL,'2023-10-24 04:18:53','2023-10-24 04:18:53',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'Оводков','Андрей','Юрьевич','ovod@example.com','2023-09-24 06:42:44','$2y$10$m4By779zElLoTIoTv4WjqOjsz3hEmJEAUY4MqqpAkjyMSTX9WtBce',1,NULL,2,'78fCkIRxhZ','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,NULL),(2,'Марченко','Алексей','Валентинович','vlad@example.com','2023-09-24 06:42:44','$2y$10$o/j8tithKecyn4EmCstuEe//S6kBuTA5mpFpLQIBxGrcZs.rEpQfy',1,NULL,3,'UyT9NGd43U','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,NULL),(3,'Костин','Сергей','Владиславович','johndoe@example.com','2023-09-24 06:42:44','$2y$10$HmrjmfUgQ.BjDc4nIgue2O6kfMz2pPrBZsibqnRB36AaLnM9ZyqFu',1,NULL,1,'AjF5sH8XPFFseVZuTohp0pkcD13N5Pu524MxeCZwgS1uZrkmR788TzxgMP3a','2023-09-24 06:42:44','2023-09-24 06:42:44',NULL,NULL,NULL,NULL,NULL),(5,'1','1','1231313','1@mail.ru',NULL,'$2y$10$W8MnKnZnpg/i8OZuQ7FqJO.mqUTpB5m/2zVobnznyrYVPBPb1wkyS',0,NULL,3,NULL,'2023-10-24 04:18:53','2023-10-24 04:18:53',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -712,4 +818,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-25  0:33:27
+-- Dump completed on 2023-10-27  0:16:39

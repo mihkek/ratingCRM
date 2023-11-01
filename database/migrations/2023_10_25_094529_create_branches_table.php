@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShedulesTable extends Migration
+class CreateBranchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateShedulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('shedules', function (Blueprint $table) {
+        Schema::create('branches', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',25);
-            $table->boolean('cancel_shedule')->default(false);
-            $table->string('status_shedule',25);
+            $table->string('name',25)->nullable();
+            $table->string('adress', 50)->nullable();
+            $table->string('phone', 25)->nullable();
+            $table->string('geolocation',25)->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateShedulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shedules');
+        Schema::dropIfExists('branches');
     }
 }

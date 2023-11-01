@@ -19,6 +19,8 @@ use App\Http\Controllers\RatingsController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\SheduleController;
+use App\Http\Controllers\BranchesController;
+use App\Http\Controllers\HallController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -104,11 +106,15 @@ Route::post('schedules', [SheduleController::class, 'store'])
 ->name('schedules.store')
 ->middleware('auth');
 
-Route::get('schedules/{schedule}/edit', [SheduleController::class, 'edit'])
+Route::get('schedules/{groups}/show', [SheduleController::class, 'show'])
+->name('schedules.show')
+->middleware('auth');
+
+Route::get('schedules/{student}/edit', [SheduleController::class, 'edit'])
 ->name('schedules.edit')
 ->middleware('auth');
 
-Route::put('schedules/{schedule}', [SheduleController::class, 'update'])
+Route::put('schedules/{student}', [SheduleController::class, 'update'])
 ->name('schedules.update')
 ->middleware('auth');
 
@@ -310,6 +316,38 @@ Route::get('ratings', [RatingsController::class, 'index'])
     ->name('ratings')
     ->middleware('auth');
 
+
+/*
+|--------------------------------------------------------------------------
+| Филиалы
+|--------------------------------------------------------------------------
+*/
+
+Route::get('branches', [BranchesController::class, 'index'])
+->name('branches')
+->middleware('auth');
+
+Route::get('branches/create', [BranchesController::class, 'create'])
+->name('branches.create')
+->middleware('auth');
+
+Route::post('branches', [BranchesController::class, 'store'])
+->name('branches.store')
+->middleware('auth');
+
+Route::get('branches/{branch}/edit', [BranchesController::class, 'edit'])
+->name('branches.edit')
+->middleware('auth');
+
+Route::put('branches/{branch}', [BranchesController::class, 'update'])
+->name('branches.update')
+->middleware('auth');
+
+Route::delete('branches/{branch}', [BranchesController::class, 'destroy'])
+->name('branches.destroy')
+->middleware('auth');
+
+
 /*
 |--------------------------------------------------------------------------
 | Раздел админа
@@ -402,3 +440,17 @@ Route::get('/img/{path}', [ImagesController::class, 'show'])
 Route::put('notifications/{notification}', [NotificationController::class, 'update'])
     ->name('notifications.update')
     ->middleware('auth');
+
+//Halls
+
+// Route::get('branches/halls', [HallController::class, 'index'])
+//     ->name('branches')
+//     ->middleware('auth');
+    
+// Route::get('branches/hall_create', [HallController::class, 'hall_create'])
+// ->name('branches.hall_create')
+// ->middleware('auth');
+
+// Route::post('halls', [HallController::class, 'store'])
+//     ->name('halls.store')
+//     ->middleware('auth');
